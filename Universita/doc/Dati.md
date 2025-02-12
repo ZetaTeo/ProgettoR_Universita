@@ -7,20 +7,7 @@
 - **email**
 - **matricola**
 - **corso_di_laurea**
-
-### Corso
-- **id**
-- **nome**
-- **codice**
-- **docente_id**
-
-### Docente
-- **id**
-- **nome**
-- **cognome**
-- **email**
-- **dipartimento**
-- **codice_fiscale**
+- **cfu_totali**
 
 ### Esame
 - **id**
@@ -28,6 +15,24 @@
 - **studente_id**
 - **voto**
 - **data**
+- **superato**
+
+### Corso
+- **id**
+- **nome**
+- **docente_id**
+- **cfu**
+
+
+
+### Docente
+- **id**
+- **nome**
+- **cognome**
+- **email**
+- **dipartimento_id**
+- **codice_fiscale**
+
 
 ### Dipartimento
 - **id**

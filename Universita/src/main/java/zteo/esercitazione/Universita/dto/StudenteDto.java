@@ -2,9 +2,7 @@ package zteo.esercitazione.Universita.dto;
 
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import zteo.esercitazione.Universita.entity.Studente;
 
@@ -13,18 +11,23 @@ import zteo.esercitazione.Universita.entity.Studente;
 @AllArgsConstructor
 public class StudenteDto {
 
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String cognome;
 
-    @Column(nullable = false, unique = true)
+    @NotBlank
     private String email;
 
-
-    @Column(unique = true, nullable = false)
-    @Size(max = 10)
+    @NotBlank
     private String matricola;
 
+    @NotBlank
     private String corsoDiLaurea;
+
+    @NotNull
+    private int cfuTotali;
 
     public static StudenteDto fromEntityToDto(Studente studente)
     {
@@ -34,7 +37,8 @@ public class StudenteDto {
                   studente.getCognome(),
                   studente.getEmail(),
                   studente.getMatricola(),
-                  studente.getCorsoDiLaurea()
+                  studente.getCorsoDiLaurea(),
+                  studente.getCfuTotali()
                 );
     }
 

@@ -2,7 +2,9 @@ package zteo.esercitazione.Universita.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 
@@ -28,12 +30,16 @@ public class Studente {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(unique = true, nullable = false)
-
+    @Column(unique = true, nullable = false, length = 10)
+    @Size(min = 10, max = 10, message = "La matricola deve essere lunga esattamente 10 caratteri")
     private String matricola;
 
     @Column(nullable = false)
     private String corsoDiLaurea;
+
+    @Min(value = 0, message = "CFU must be a non-negative number")
+    @Max(value = 180, message = "CFU cannot exceed 180")
+    private int cfuTotali = 0;
 
     @OneToMany(mappedBy = "studente")
     private List<Esame> esami;
