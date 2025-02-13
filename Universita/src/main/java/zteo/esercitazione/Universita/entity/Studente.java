@@ -35,6 +35,9 @@ public class Studente {
     private String matricola;
 
     @Column(nullable = false)
+    private String dipartimento;
+
+    @Column(nullable = false)
     private String corsoDiLaurea;
 
     @Min(value = 0, message = "CFU must be a non-negative number")

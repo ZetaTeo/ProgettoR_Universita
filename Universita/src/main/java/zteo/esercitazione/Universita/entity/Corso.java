@@ -19,15 +19,12 @@ public class Corso {
     private int id;
 
     @Column(nullable = false)
-    private String nome;
+    private String nomeMateria;
 
     @Min(value = 0, message = "Codice must be at least 0")
     @Max(value = 180, message = "CFU cannot exceed 180")
     private int cfu;
 
-//    @ManyToOne
-//    @JoinColumn(name = "docente_id")
-//    private Docente docente;
 
     @OneToMany(mappedBy = "corso")
     private List<Esame> esami;

@@ -6,6 +6,7 @@
 - **cognome**
 - **email**
 - **matricola**
+- **dipartimento**
 - **corso_di_laurea**
 - **cfu_totali**
 
@@ -20,10 +21,10 @@
 ### Corso
 - **id**
 - **nome**
-- **docente_id**
 - **cfu**
+- **esame_id**
 
-
+############################################################################################################
 
 ### Docente
 - **id**

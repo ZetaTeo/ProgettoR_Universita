@@ -24,10 +24,14 @@ public class StudenteDto {
     private String matricola;
 
     @NotBlank
+    private String dipartimento;
+
+    @NotBlank
     private String corsoDiLaurea;
 
     @NotNull
     private int cfuTotali;
+
 
     public static StudenteDto fromEntityToDto(Studente studente)
     {
@@ -37,6 +41,7 @@ public class StudenteDto {
                   studente.getCognome(),
                   studente.getEmail(),
                   studente.getMatricola(),
+                  studente.getDipartimento(),
                   studente.getCorsoDiLaurea(),
                   studente.getCfuTotali()
                 );

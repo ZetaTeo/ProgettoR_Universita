@@ -5,5 +5,5 @@ import zteo.esercitazione.Universita.entity.Corso;
 
 public interface CorsoRepository extends JpaRepository<Corso, Integer> {
 
-   // boolean existsByCodice(long codice);
+
 }

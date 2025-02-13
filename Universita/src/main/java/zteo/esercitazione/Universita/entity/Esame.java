@@ -27,6 +27,9 @@ public class Esame {
     @Column(nullable = false)
     private int voto;
 
+    @Column(nullable = false)
+    private boolean superato;
+
     @ManyToOne
     @JoinColumn(name = "corso_id")
     private Corso corso;
@@ -34,5 +37,12 @@ public class Esame {
     @ManyToOne
     @JoinColumn(name = "studente_id")
     private Studente studente;
+
+    @PrePersist
+    @PreUpdate
+    public void calcolaSuperamento()
+    {
+        this.superato = this.voto >= 18;
+    }
 
 }

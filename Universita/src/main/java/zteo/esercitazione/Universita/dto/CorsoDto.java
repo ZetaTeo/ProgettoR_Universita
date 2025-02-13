@@ -1,5 +1,7 @@
 package zteo.esercitazione.Universita.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,17 +12,22 @@ import zteo.esercitazione.Universita.entity.Corso;
 @AllArgsConstructor
 public class CorsoDto {
 
+    @NotNull
+    private int id;
+
+    @NotBlank
     private String nome;
 
-    @Range(min = 4, max = 10)
-    private long codice;
+    @NotNull
+    private int cfu;
 
     public static CorsoDto fromEntityToDto(Corso corso)
     {
         return new CorsoDto
                 (
-                   corso.getNome(),
-                   corso.getCodice()
+                   corso.getId(),
+                   corso.getNomeMateria(),
+                   corso.getCfu()
                 );
     }
 }

@@ -1,20 +1,4 @@
-INSERT INTO dipartimento (id, nome, sede) VALUES
-(1, 'Informatica', 'Edificio A'),
-(2, 'Matematica', 'Edificio B'),
-(3, 'Fisica', 'Edificio C'),
-(4, 'Lettere', 'Edificio D'),
-(5, 'Economia', 'Edificio E');
-
-
-INSERT INTO docente (id, nome, cognome, email, dipartimento) VALUES
-(1, 'Mario', 'Rossi', 'mario.rossi@uni.it', 1),
-(2, 'Luca', 'Bianchi', 'luca.bianchi@uni.it', 2),
-(3, 'Anna', 'Verdi', 'anna.verdi@uni.it', 3),
-(4, 'Paolo', 'Neri', 'paolo.neri@uni.it', 4),
-(5, 'Elena', 'Russo', 'elena.russo@uni.it', 5);
-
-
-INSERT INTO corso (id, nome, codice, docente_id) VALUES
+INSERT INTO corso (id, nome, cfu, docente_id) VALUES
 (1, 'Programmazione Java', 'CS101', 1),
 (2, 'Analisi Matematica', 'MATH202', 2),
 (3, 'Fisica I', 'PHY303', 3),
@@ -44,3 +28,18 @@ INSERT INTO aula (id, nome, capienza, dipartimento_id) VALUES
 (3, 'Laboratorio Fisica', 30, 3),
 (4, 'Sala Conferenze', 100, 4),
 (5, 'Aula Economia', 75, 5);
+
+INSERT INTO dipartimento (id, nome, sede) VALUES
+(1, 'Informatica', 'Edificio A'),
+(2, 'Matematica', 'Edificio B'),
+(3, 'Fisica', 'Edificio C'),
+(4, 'Lettere', 'Edificio D'),
+(5, 'Economia', 'Edificio E');
+
+
+INSERT INTO docente (id, nome, cognome, email, dipartimento) VALUES
+(1, 'Mario', 'Rossi', 'mario.rossi@uni.it', 1),
+(2, 'Luca', 'Bianchi', 'luca.bianchi@uni.it', 2),
+(3, 'Anna', 'Verdi', 'anna.verdi@uni.it', 3),
+(4, 'Paolo', 'Neri', 'paolo.neri@uni.it', 4),
+(5, 'Elena', 'Russo', 'elena.russo@uni.it', 5);

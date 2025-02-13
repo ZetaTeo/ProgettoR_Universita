@@ -12,11 +12,6 @@ import java.util.Optional;
 public interface StudenteRepository extends JpaRepository<Studente, Integer> {
 
 
-    Optional<Studente> findByMatricola(String matricola);
-
-    Optional<Studente> findByEmail(String email);
-
-    void deleteByMatricola(String matricola);
 
 
 
