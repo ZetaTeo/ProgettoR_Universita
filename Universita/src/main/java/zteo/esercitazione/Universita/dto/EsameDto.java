@@ -13,26 +13,24 @@ import java.time.LocalDate;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class EsameDto {
 
-
-    private int id;
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
     @NotNull
     private int voto;
 
-    @NotNull
-    private boolean superato;
+    private String materia;
+
+    private String studente;
 
     public static EsameDto fromEntityToDto(Esame esame)
     {
         return new EsameDto
                 (
-                   esame.getId(),
                    esame.getData(),
                    esame.getVoto(),
-                   esame.isSuperato()
+                   esame.getMateria().getNomeMateria(),
+           esame.getStudente().getNome()  + " " + esame.getStudente().getCognome()
                 );
     }
 }

@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "esame")
@@ -27,22 +30,24 @@ public class Esame {
     @Column(nullable = false)
     private int voto;
 
-    @Column(nullable = false)
-    private boolean superato;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Materia materia;
 
     @ManyToOne
-    @JoinColumn(name = "corso_id")
-    private Corso corso;
-
-    @ManyToOne
-    @JoinColumn(name = "studente_id")
+    @JoinColumn(nullable = false)
     private Studente studente;
 
-    @PrePersist
-    @PreUpdate
-    public void calcolaSuperamento()
+    public boolean isSuperato()
     {
-        this.superato = this.voto >= 18;
+        return voto >= 18;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name = "esame_docente",  // Nome della tabella intermedia con colonne esame_id e docente_id
+            joinColumns = @JoinColumn(name = "esame_id"),  // Colonna entità corrente
+            inverseJoinColumns = @JoinColumn(name = "docente_id") // Colonna entità collegata
+    )
+    private Set<Docente> docenti = new HashSet<>();
 }

@@ -1,7 +1,7 @@
 package zteo.esercitazione.Universita.dto;
 
 
-import jakarta.persistence.Column;
+
 import jakarta.validation.constraints.*;
 import lombok.*;
 import zteo.esercitazione.Universita.entity.Studente;
@@ -11,26 +11,24 @@ import zteo.esercitazione.Universita.entity.Studente;
 @AllArgsConstructor
 public class StudenteDto {
 
-    @NotBlank
+    @NotBlank(message = "Il nome non può essere vuoto")
     private String nome;
 
-    @NotBlank
+    @NotBlank(message = "Il cognome non può essere vuoto")
     private String cognome;
 
-    @NotBlank
+    @NotBlank(message = "L'email non può essere vuota")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "La matricola non può essere vuota")
+    @Size(min = 10, max = 10, message = "La matricola deve essere lunga esattamente 10 caratteri")
     private String matricola;
-
-    @NotBlank
-    private String dipartimento;
-
-    @NotBlank
-    private String corsoDiLaurea;
 
     @NotNull
     private int cfuTotali;
+
+    @NotBlank(message = "Il dipartimento non può essere vuoto")
+    private String dipartimento;
 
 
     public static StudenteDto fromEntityToDto(Studente studente)
@@ -41,9 +39,9 @@ public class StudenteDto {
                   studente.getCognome(),
                   studente.getEmail(),
                   studente.getMatricola(),
-                  studente.getDipartimento(),
-                  studente.getCorsoDiLaurea(),
-                  studente.getCfuTotali()
+                  studente.getCfuTotali(),
+                  studente.getDipartimento().getNome()
+
                 );
     }
 

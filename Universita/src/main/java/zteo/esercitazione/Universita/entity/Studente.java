@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,18 +35,19 @@ public class Studente {
     @Size(min = 10, max = 10, message = "La matricola deve essere lunga esattamente 10 caratteri")
     private String matricola;
 
-    @Column(nullable = false)
-    private String dipartimento;
-
-    @Column(nullable = false)
-    private String corsoDiLaurea;
+//    @Column(nullable = false)
+//    private String corsoDiLaurea;
 
     @Min(value = 0, message = "CFU must be a non-negative number")
     @Max(value = 180, message = "CFU cannot exceed 180")
     private int cfuTotali = 0;
 
-    @OneToMany(mappedBy = "studente")
-    private List<Esame> esami;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Dipartimento dipartimento;
+
+    @OneToMany(mappedBy = "studente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Esame> esami = new ArrayList<>();
 
 
 }
