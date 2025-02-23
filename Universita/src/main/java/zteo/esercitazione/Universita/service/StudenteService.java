@@ -12,6 +12,8 @@ import zteo.esercitazione.Universita.exception.ResourceNotFoundException;
 import zteo.esercitazione.Universita.repository.DipartimentoRepository;
 import zteo.esercitazione.Universita.repository.StudenteRepository;
 
+import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class StudenteService {
     private final StudenteRepository studenteRepository;
     private final DipartimentoRepository dipartimentoRepository;
 
-    public StudenteDto createStudent(StudenteDto studenteDto)
+    public StudenteDto createStudente(StudenteDto studenteDto)
     {
         Dipartimento dipartimento = dipartimentoRepository.findByName(studenteDto.getDipartimento())
                 .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + studenteDto.getDipartimento() + " non trovato"));
@@ -39,7 +41,31 @@ public class StudenteService {
     }
 
 
+    public StudenteDto updateEmailStudente(String matricola, String nuovaEmail)
+    {
+        Studente studente = studenteRepository.findByMatricola(matricola)
+                .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
 
+        studente.setEmail(nuovaEmail);
+        studenteRepository.save(studente);
+        return StudenteDto.fromEntityToDto(studente);
+    }
+
+    public StudenteDto updateEmailAndMatricolaStudente(String matricolaAttuale, Map<String, String> updates) {
+        Studente studente = studenteRepository.findByMatricola(matricolaAttuale)
+                .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola " + matricolaAttuale + " non trovato"));
+
+        // Modifica solo i campi presenti nel body
+        if (updates.containsKey("email")) {
+            studente.setEmail(updates.get("email"));
+        }
+        if (updates.containsKey("matricola")) {
+            studente.setMatricola(updates.get("matricola"));
+        }
+
+        studenteRepository.save(studente);
+        return StudenteDto.fromEntityToDto(studente);
+    }
 
 
 

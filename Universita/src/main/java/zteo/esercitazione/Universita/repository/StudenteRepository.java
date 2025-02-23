@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface StudenteRepository extends JpaRepository<Studente, Integer> {
 
 
-
+    @Query("SELECT s FROM Studente s WHERE s.matricola = :matricola")
+    Optional <Studente> findByMatricola(String matricola);
 
 
 
