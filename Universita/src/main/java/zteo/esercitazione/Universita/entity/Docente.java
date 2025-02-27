@@ -1,5 +1,7 @@
 package zteo.esercitazione.Universita.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,17 +30,13 @@ public class Docente {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "docente_dipartimento",
-            joinColumns = @JoinColumn(name = "docente_id"),
-            inverseJoinColumns = @JoinColumn(name = "dipartimento_id")
-    )
-    private Set<Dipartimento> dipartimenti = new HashSet<>();
 
-    @ManyToMany(mappedBy = "docenti")
-    private Set<Materia> materie = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Dipartimento dipartimento;
 
-    @ManyToMany(mappedBy = "docenti")
-    private Set<Esame> esami = new HashSet<>();
+    @OneToMany(mappedBy = "docente", cascade = CascadeType.ALL)
+    private List<Materia> materie;
+
 
 }

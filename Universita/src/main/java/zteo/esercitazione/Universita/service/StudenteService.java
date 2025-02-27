@@ -33,6 +33,7 @@ public class StudenteService {
         studente.setCognome(studenteDto.getCognome());
         studente.setEmail(studenteDto.getEmail());
         studente.setMatricola(studenteDto.getMatricola());
+        studente.setCorsoDiLaurea(studenteDto.getCorsoDiLaurea());
         studente.setCfuTotali(studenteDto.getCfuTotali());
         studente.setDipartimento(dipartimento);
 
@@ -55,7 +56,7 @@ public class StudenteService {
         Studente studente = studenteRepository.findByMatricola(matricolaAttuale)
                 .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola " + matricolaAttuale + " non trovato"));
 
-        // Modifica solo i campi presenti nel body
+
         if (updates.containsKey("email")) {
             studente.setEmail(updates.get("email"));
         }
@@ -68,6 +69,13 @@ public class StudenteService {
     }
 
 
+    public void deleteStudente(String matricola)
+    {
+        Studente studente = studenteRepository.findByMatricola(matricola)
+                .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola: " + matricola + " non trovato."));
+
+        studenteRepository.delete(studente);
+    }
 
 
 

@@ -24,6 +24,9 @@ public class StudenteDto {
     @Size(min = 10, max = 10, message = "La matricola deve essere lunga esattamente 10 caratteri")
     private String matricola;
 
+    @NotBlank(message = "Il corso di laurea non può essere vuoto")
+    private String corsoDiLaurea;
+
     @NotNull
     private int cfuTotali;
 
@@ -39,6 +42,7 @@ public class StudenteDto {
                   studente.getCognome(),
                   studente.getEmail(),
                   studente.getMatricola(),
+                  studente.getCorsoDiLaurea(),
                   studente.getCfuTotali(),
                   studente.getDipartimento().getNome()
 

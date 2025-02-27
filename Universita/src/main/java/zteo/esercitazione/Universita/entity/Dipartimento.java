@@ -1,5 +1,7 @@
 package zteo.esercitazione.Universita.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +28,14 @@ public class Dipartimento {
     @Column(unique = true, nullable = false)
     private String nome;
 
-    @ManyToMany(mappedBy = "dipartimenti")
-    private Set<Docente> docenti = new HashSet<>();
+
+    @OneToMany(mappedBy = "dipartimento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Docente> docenti = new ArrayList<>();
 
     @OneToMany(mappedBy = "dipartimento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Studente> studenti = new ArrayList<>();
+
+    @OneToMany(mappedBy = "dipartimento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Materia> materie = new ArrayList<>();
 
 }

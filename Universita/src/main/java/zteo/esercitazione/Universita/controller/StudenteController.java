@@ -16,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/studente")
 public class StudenteController {
 
     private final StudenteService studenteService;
@@ -43,6 +44,11 @@ public class StudenteController {
         return ResponseEntity.ok(studenteService.updateEmailAndMatricolaStudente(matricolaAttuale, requestBody));
     }
 
-
+    @DeleteMapping("/deleteStudente/{matricola}")
+    public ResponseEntity<String> deleteStudente(@PathVariable String matricola)
+    {
+        studenteService.deleteStudente(matricola);
+        return ResponseEntity.ok("Studente con matricola " + matricola + " eliminato con successo.");
+    }
 
 }

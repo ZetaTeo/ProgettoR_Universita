@@ -2,6 +2,7 @@ package zteo.esercitazione.Universita.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,34 +21,30 @@ import java.util.Set;
 @Setter
 public class Esame {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
+    @EmbeddedId
+    private EsameId id;
+
+    @FutureOrPresent(message = "La data non può essere nel passato")
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false, insertable = false, updatable = false) // Evita il conflitto nella mappatura
     private LocalDate data;
 
     @Column(nullable = false)
     private int voto;
 
     @ManyToOne
+    @MapsId("materiaId")
     @JoinColumn(nullable = false)
     private Materia materia;
 
     @ManyToOne
+    @MapsId("studenteId")
     @JoinColumn(nullable = false)
     private Studente studente;
 
-    public boolean isSuperato()
-    {
-        return voto >= 18;
-    }
+    @Column(nullable = false)
+    private int bocciature = 0;
 
-    @ManyToMany
-    @JoinTable(
-            name = "esame_docente",  // Nome della tabella intermedia con colonne esame_id e docente_id
-            joinColumns = @JoinColumn(name = "esame_id"),  // Colonna entità corrente
-            inverseJoinColumns = @JoinColumn(name = "docente_id") // Colonna entità collegata
-    )
-    private Set<Docente> docenti = new HashSet<>();
+
 }

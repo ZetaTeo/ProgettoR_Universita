@@ -1,6 +1,7 @@
 package zteo.esercitazione.Universita.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -9,7 +10,9 @@ import lombok.*;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "studente")
@@ -35,12 +38,12 @@ public class Studente {
     @Size(min = 10, max = 10, message = "La matricola deve essere lunga esattamente 10 caratteri")
     private String matricola;
 
-//    @Column(nullable = false)
-//    private String corsoDiLaurea;
-
     @Min(value = 0, message = "CFU must be a non-negative number")
     @Max(value = 180, message = "CFU cannot exceed 180")
     private int cfuTotali = 0;
+
+    @Column(nullable = false)
+    private String corsoDiLaurea;
 
     @ManyToOne
     @JoinColumn(nullable = false)

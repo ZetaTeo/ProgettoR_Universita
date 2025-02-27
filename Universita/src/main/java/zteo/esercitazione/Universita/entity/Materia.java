@@ -1,5 +1,6 @@
 package zteo.esercitazione.Universita.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -30,13 +31,16 @@ public class Materia {
     @Column(nullable = false)
     private short anno;
 
-    @ManyToMany
-    @JoinTable(name = "materia_docente",
-            joinColumns = @JoinColumn(name = "materia_id"),
-            inverseJoinColumns = @JoinColumn(name = "docente_id")
-    )
-    private Set<Docente> docenti = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Dipartimento dipartimento;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Docente docente;
+
+    @OneToMany(mappedBy = "materia", cascade = CascadeType.ALL)
+    private List<Esame> esami;
 
 
 }
