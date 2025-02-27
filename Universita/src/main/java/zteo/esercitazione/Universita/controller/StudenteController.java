@@ -1,6 +1,8 @@
 package zteo.esercitazione.Universita.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -23,28 +25,57 @@ public class StudenteController {
 
 
     @PostMapping("/addStudente")
-    public ResponseEntity<StudenteDto> createStudente(@Valid @RequestBody StudenteDto studenteDto)
+    @Operation(summary = "Inserisce un nuovo studente",
+            tags = "Operazioni - Studente")
+    public ResponseEntity<StudenteDto> createStudente(@RequestBody StudenteDto studenteDto)
     {
         //return ResponseEntity.ok(studenteService.createStudent(studenteDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(studenteService.createStudente(studenteDto));
     }
 
+
     @PatchMapping("/updateEmailStudente")
-    public ResponseEntity<StudenteDto> updateEmailStudente(@RequestParam String matricola, @RequestBody @Valid Map<String, String> requestBody)
+    @Operation(summary = "Aggiorna solo l'email di uno studente",
+            tags = "Operazioni - Studente")
+    public ResponseEntity<StudenteDto> updateEmailStudente(@RequestParam String matricola, @RequestBody StudenteDto studenteDto)
     {
-        String nuovaEmail = requestBody.get("nuovaEmail");
-        return ResponseEntity.ok(studenteService.updateEmailStudente(matricola, nuovaEmail));
+        studenteDto = studenteService.updateEmailStudente(matricola, studenteDto.getEmail());
+        return ResponseEntity.ok(studenteDto);
     }
 
-    @PatchMapping("/updateEmailAndMatricolaStudente")
-    public ResponseEntity<StudenteDto> updateStudente(
-            @RequestParam String matricolaAttuale,
-            @RequestBody Map<String, String> requestBody)
+//    @PatchMapping("/updateEmailAndMatricolaStudente")
+//    @Operation(summary = "Aggiorna l'email e la matricola di uno studente",
+//               tags = "Operazioni - Studente")
+//    public ResponseEntity<StudenteDto> updateEmailAndMatricolaStudente(
+//            @RequestParam String matricolaAttuale,
+//            @RequestBody StudenteDto studenteDto)
+//    {
+//        return ResponseEntity.ok(studenteService.updateEmailAndMatricolaStudente(matricolaAttuale, studenteDto.getMatricola(), studenteDto.getEmail()));
+//    }
+
+
+    @PatchMapping("/updateEmailOrMatricola")
+    @Operation(summary = "Aggiorna l'email e/o la matricola di uno studente",
+            description = "Aggiorna l'email, la matricola o entrambi in un'unica operazione, a seconda dei dati passati.",
+            tags = "Operazioni - Studente")
+    public ResponseEntity<StudenteDto> updateEmailOrMatricola(
+            @RequestParam String matricolaAttuale,  // Parametro obbligatorio per identificare lo studente
+            @RequestBody StudenteDto studenteDto)   // Corpo della richiesta che può contenere email o matricola
     {
-        return ResponseEntity.ok(studenteService.updateEmailAndMatricolaStudente(matricolaAttuale, requestBody));
+        // Chiamata al service per aggiornare email e/o matricola
+        StudenteDto updatedStudente = studenteService.updateEmailAndMatricolaStudente(
+                matricolaAttuale,
+                studenteDto.getMatricola(),
+                studenteDto.getEmail()
+        );
+
+        return ResponseEntity.ok(updatedStudente);
     }
+
 
     @DeleteMapping("/deleteStudente/{matricola}")
+    @Operation(summary = "Elimina uno studente con la sua matricola",
+            tags = "Operazioni - Studente")
     public ResponseEntity<String> deleteStudente(@PathVariable String matricola)
     {
         studenteService.deleteStudente(matricola);

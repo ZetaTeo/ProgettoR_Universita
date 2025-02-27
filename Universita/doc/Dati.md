@@ -1,7 +1,7 @@
 ## Entità principali
 
 ### Studente
-- **id**
+- **PK: id**
 - **nome**
 - **cognome**
 - **email**
@@ -9,36 +9,28 @@
 - **dipartimento**
 - **corso_di_laurea**
 - **cfu_totali**
+- **FK: dipartimento_id**
 
-### Esame
-- **id**
-- **corso_id**
-- **studente_id**
+### Esame con chiave composta
+- **PK, FK1: materia_id**
+- **PK, FK2: studente_id**
 - **voto**
 - **data**
-- **superato**
-
-### Corso
-- **id**
-- **nome**
-- **cfu**
-- **esame_id**
-
-############################################################################################################
+- **bocciature**
 
 ### Docente
-- **id**
+- **PK: id**
 - **nome**
 - **cognome**
 - **email**
-- **dipartimento_id**
-- **codice_fiscale**
-
+- **FK: dipartimento_id**
 
 ### Dipartimento
-- **id**
+- **PK: id**
 - **nome**
-- **sede**
+
+############################################################################################################
+# Da implementare successivamente
 
 ### Aula
 - **id**
@@ -48,11 +40,23 @@
 
 ## Relazioni
 
-- Uno studente può essere iscritto a più corsi (**relazione N:N**).
-- Un docente può insegnare più corsi (**relazione 1:N**).
-- Un corso può avere più studenti (**relazione N:N**).
-- Gli esami sono associati a studenti e corsi (**relazione N:1**).
-- Le aule appartengono a un dipartimento (**relazione N:1**).
+Relazioni:
+Ogni Studente è associato a un Dipartimento.
+Ogni Docente è assegnato a un Dipartimento.
+Ogni Materia ha un Docente e appartiene a un Dipartimento.
+Gli Esami collegano Studenti e Materie, come è corretto.
+
+# Metodo interessante: inserimento esame
+
+1. Controllo se lo studente ha già sostenuto l'esame
+-  Qualora fosse così bisognerà aggiornare il voto e la data
+   controllando se il voto è <>= 18, inoltre la data deve essere diversa
+   poichè non si possono sostenere due esami della stessa materia lo stesso giorno.
+2. Se il voto < 18, incremento il numero di bocciature
+3. Se il voto >= 18, incremento il numero di cfu totali dello studente
+4. Qualora l'esame non sia mai stato sostenuto dallo studente si procederà con 
+   l'inserimento di tutti i parametri dell'entità esame.
+
 
 ## Esempio di 10 endpoint da implementare
 

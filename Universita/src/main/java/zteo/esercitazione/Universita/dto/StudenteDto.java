@@ -6,6 +6,16 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import zteo.esercitazione.Universita.entity.Studente;
 
+/*
+Se desideri mantenere il StudenteDto e non creare un DTO separato,
+puoi usare @JsonView per controllare quali proprietà vengono mostrate su Swagger.
+* @JsonView(Views.Update.class)
+    private String email;
+
+    @JsonView(Views.Update.class)
+    private String matricola;
+* */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

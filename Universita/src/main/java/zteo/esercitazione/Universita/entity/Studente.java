@@ -3,6 +3,7 @@ package zteo.esercitazione.Universita.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
@@ -31,6 +32,7 @@ public class Studente {
     @Column(nullable = false)
     private String cognome;
 
+    @Email(message = "Email non valida")
     @Column(unique = true, nullable = false)
     private String email;
 

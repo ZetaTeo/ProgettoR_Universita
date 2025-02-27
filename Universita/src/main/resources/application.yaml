@@ -37,3 +37,11 @@ spring:
       org.springframework: info
       zteo.esercitazione.Universita: info
       org.hibernate.orm.jdbc.bind: trace
+
+spring-doc:
+  swagger-ui:
+    enabled: true
+    # http://localhost:8081/api/swagger-ui/index.html
+    path: /swagger-ui/index.html
+    tags-sorter: alpha
+    display-request-duration: true
