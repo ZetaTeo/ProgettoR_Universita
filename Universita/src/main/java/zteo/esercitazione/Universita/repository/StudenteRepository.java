@@ -7,13 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import zteo.esercitazione.Universita.entity.Studente;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StudenteRepository extends JpaRepository<Studente, Integer> {
 
 
-    @Query("SELECT s FROM Studente s WHERE s.matricola = :matricola")
+
     Optional <Studente> findByMatricola(String matricola);
+
+    @Query ("SELECT s FROM Studente s WHERE s.dipartimento.nome = :dipartimento")
+    List<Studente> findByDipartimento(String dipartimento);
 
 
 

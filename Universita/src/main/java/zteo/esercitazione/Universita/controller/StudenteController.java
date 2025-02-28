@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import zteo.esercitazione.Universita.dto.StudenteDto;
+import zteo.esercitazione.Universita.entity.Studente;
 import zteo.esercitazione.Universita.service.StudenteService;
 
 import java.util.Map;
@@ -26,7 +27,7 @@ public class StudenteController {
 
     @PostMapping("/addStudente")
     @Operation(summary = "Inserisce un nuovo studente",
-            tags = "Operazioni - Studente")
+               tags = "Operazioni - Studente")
     public ResponseEntity<StudenteDto> createStudente(@RequestBody StudenteDto studenteDto)
     {
         //return ResponseEntity.ok(studenteService.createStudent(studenteDto));
@@ -34,36 +35,15 @@ public class StudenteController {
     }
 
 
-    @PatchMapping("/updateEmailStudente")
-    @Operation(summary = "Aggiorna solo l'email di uno studente",
-            tags = "Operazioni - Studente")
-    public ResponseEntity<StudenteDto> updateEmailStudente(@RequestParam String matricola, @RequestBody StudenteDto studenteDto)
-    {
-        studenteDto = studenteService.updateEmailStudente(matricola, studenteDto.getEmail());
-        return ResponseEntity.ok(studenteDto);
-    }
-
-//    @PatchMapping("/updateEmailAndMatricolaStudente")
-//    @Operation(summary = "Aggiorna l'email e la matricola di uno studente",
-//               tags = "Operazioni - Studente")
-//    public ResponseEntity<StudenteDto> updateEmailAndMatricolaStudente(
-//            @RequestParam String matricolaAttuale,
-//            @RequestBody StudenteDto studenteDto)
-//    {
-//        return ResponseEntity.ok(studenteService.updateEmailAndMatricolaStudente(matricolaAttuale, studenteDto.getMatricola(), studenteDto.getEmail()));
-//    }
-
-
     @PatchMapping("/updateEmailOrMatricola")
     @Operation(summary = "Aggiorna l'email e/o la matricola di uno studente",
-            description = "Aggiorna l'email, la matricola o entrambi in un'unica operazione, a seconda dei dati passati.",
-            tags = "Operazioni - Studente")
+               tags = "Operazioni - Studente")
     public ResponseEntity<StudenteDto> updateEmailOrMatricola(
-            @RequestParam String matricolaAttuale,  // Parametro obbligatorio per identificare lo studente
-            @RequestBody StudenteDto studenteDto)   // Corpo della richiesta che può contenere email o matricola
+            @RequestParam String matricolaAttuale,
+            @RequestBody StudenteDto studenteDto)
     {
-        // Chiamata al service per aggiornare email e/o matricola
-        StudenteDto updatedStudente = studenteService.updateEmailAndMatricolaStudente(
+
+        StudenteDto updatedStudente = studenteService.updateEmailOrMatricolaStudente(
                 matricolaAttuale,
                 studenteDto.getMatricola(),
                 studenteDto.getEmail()

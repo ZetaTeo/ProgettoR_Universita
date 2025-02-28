@@ -3,10 +3,7 @@ package zteo.esercitazione.Universita.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 
@@ -27,9 +24,11 @@ public class Studente {
     private int id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Il nome non può essere vuoto")
     private String nome;
 
     @Column(nullable = false)
+    @NotBlank(message = "Il cognome non può essere vuoto")
     private String cognome;
 
     @Email(message = "Email non valida")
@@ -45,6 +44,7 @@ public class Studente {
     private int cfuTotali = 0;
 
     @Column(nullable = false)
+    @NotBlank(message = "Il corso di laurea non può essere vuoto")
     private String corsoDiLaurea;
 
     @ManyToOne

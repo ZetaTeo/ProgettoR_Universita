@@ -16,11 +16,18 @@ public class EsameController {
 
     private final EsameService esameService;
 
+//    @PostMapping("/aggiungiEsame")
+//    public ResponseEntity<EsameDto> aggiungiEsame(@RequestBody EsameDto esameDto)
+//    {
+//        EsameDto nuovoEsame = esameService.aggiungiEsame(esameDto.getMateria(), esameDto.getMatricola(), esameDto.getVoto());
+//        return ResponseEntity.status(HttpStatus.CREATED).body((nuovoEsame));
+//    }
+
     @PostMapping("/aggiungiEsame")
-    public ResponseEntity<EsameDto> aggiungiEsame(@RequestBody EsameDto esameDto)
-    {
-        Esame nuovoEsame = esameService.aggiungiEsame(esameDto.getMateria(), esameDto.getMatricola(), esameDto.getVoto());
-        return ResponseEntity.status(HttpStatus.CREATED).body(EsameDto.fromEntityToDto(nuovoEsame));
+    public ResponseEntity<EsameDto> aggiungiEsame(@RequestBody EsameDto esameDto) {
+        Esame esame = esameService.aggiungiEsame(esameDto.getMateria(), esameDto.getMatricola(), esameDto.getVoto(), esameDto.getData());
+        EsameDto esameResponse = EsameDto.fromEntityToDto(esame);
+        return ResponseEntity.status(HttpStatus.CREATED).body(esameResponse);
     }
 
 

@@ -3,6 +3,7 @@ package zteo.esercitazione.Universita.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class Dipartimento {
     private int id;
 
     @Column(unique = true, nullable = false)
+    @NotBlank(message = "Il campo non può essere vuoto")
     private String nome;
 
 
