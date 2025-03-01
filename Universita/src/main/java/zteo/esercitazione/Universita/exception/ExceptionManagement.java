@@ -27,9 +27,7 @@ public class ExceptionManagement {
     public ResponseEntity<String> resourceNotFoundException(ResourceNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
-
-
-
+    
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<String> illegalArgumentException(IllegalArgumentException e)
     {
