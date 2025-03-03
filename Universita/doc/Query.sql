@@ -9,7 +9,7 @@ INSERT INTO docente (id, nome, cognome, email, dipartimento_id) VALUES
 (4, 'Giovanna', 'Mancini', 'gioman@email.it', 2),
 (5, 'Lorenzo', 'De Luca', 'loredeluca@email.it', 1);
 
-INSERT INTO studente (id, nome, cognome, email ,matricola, corsoDiLaurea ,cfu_totali, dipartimento_id) VALUES
+INSERT INTO studente (id, nome, cognome, email ,matricola, corso_di_laurea ,cfu_totali, dipartimento_id) VALUES
 (1, 'Marco', 'Rossi', 'marcrossi@email.it' ,'I202500001', 'Scienze e Tecnologie Informatiche' ,0, 1),
 (2, 'Giulia', 'Bianchi', 'giubianchi@email.it' ,'I202500002', 'Scienze e Tecnologie Informatiche' ,0, 1),
 (3, 'Luca', 'Verdi', 'luverdi@email.it' ,'M202500001', 'Scienze Matematiche' ,0, 2),

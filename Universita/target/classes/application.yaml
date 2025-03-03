@@ -9,7 +9,7 @@ server:
     enabled: true
     min-response-size: 2KB
 
-# SPRING BOOT + DATABASE + MAIL
+# SPRING BOOT + DATABASE
 spring:
   application:
     name: uniproj

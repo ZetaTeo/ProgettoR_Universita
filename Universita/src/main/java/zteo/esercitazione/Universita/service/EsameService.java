@@ -24,55 +24,41 @@ public class EsameService {
     private final MateriaRepository materiaRepository;
 
 
+
     public Esame aggiungiEsame(String materiaEsame, String matricola, int votoEsame, LocalDate dataEsame) {
 
-
         Studente studente = studenteRepository.findByMatricola(matricola)
-                .orElseThrow(() -> new ResourceNotFoundException("Lo studente con matricola " + matricola + " non è stato trovato"));
+                .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
 
         Materia materia = materiaRepository.findByNomeMateria(materiaEsame)
-                .orElseThrow(() -> new ResourceNotFoundException("La materia " + materiaEsame + " non è stata trovata"));
+                .orElseThrow(() -> new ResourceNotFoundException("Materia " + materiaEsame + " non trovata"));
 
-        Optional<Esame> esameEsistente = esameRepository.findByStudenteAndMateria(studente, materia);
+        Esame esame = esameRepository.findByStudenteAndMateria(studente, materia).orElse(null);
 
-        Esame esame;
-
-        if (esameEsistente.isPresent()) {
-            esame = esameEsistente.get();
-
-            if (esame.getVoto() >= 18) {
-                throw new IllegalStateException("L'esame con voto " + esame.getVoto() + " non può essere modificato.");
-            }
-
-
-            if (esame.getData().isEqual(dataEsame)) {
-                throw new IllegalStateException("Non puoi sostenere due esami della stessa materia lo stesso giorno.");
-            }
-
-            if (votoEsame < 18) {
-                esame.setBocciature(esame.getBocciature() + 1);
-            } else {
-
-                studente.setCfuTotali(studente.getCfuTotali() + materia.getCfu());
-                studenteRepository.save(studente);
-            }
+        if (esame != null) {
+            if (esame.getVoto() >= 18) throw new IllegalStateException("Esame già superato con " + esame.getVoto());
+            if (esame.getData().isEqual(dataEsame)) throw new IllegalStateException("Esame già sostenuto nella stessa data");
 
             esame.setVoto(votoEsame);
             esame.setData(dataEsame);
+            if (votoEsame < 18)
+                esame.setBocciature(esame.getBocciature() + 1);
 
         } else {
+            esame = new Esame(materia, studente, votoEsame, dataEsame, 0); 
+            if (votoEsame < 18)
+                esame.setBocciature(1);
+        }
 
-            esame = new Esame(materia, studente, votoEsame, dataEsame, votoEsame < 18 ? 1 : 0);
-
-            if (votoEsame >= 18) {
-                studente.setCfuTotali(studente.getCfuTotali() + materia.getCfu());
-                studenteRepository.save(studente);
-            }
+        if (votoEsame >= 18)
+        {
+            studente.setCfuTotali(studente.getCfuTotali() + materia.getCfu());
+            studenteRepository.save(studente);
         }
 
         return esameRepository.save(esame);
     }
 
-
+  
 
 }

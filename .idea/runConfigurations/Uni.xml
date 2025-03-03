@@ -5,7 +5,7 @@
     <envs>
       <env name="DB_HOSTNAME" value="localhost" />
       <env name="DB_NAME" value="uniproj" />
-      <env name="DB_PASSWORD" value="" />
+      <env name="DB_PASSWORD" value="GonzoSbronzo456!" />
       <env name="DB_PORT" value="3306" />
       <env name="DB_USERNAME" value="root" />
       <env name="DB_VENDOR" value="mysql" />
