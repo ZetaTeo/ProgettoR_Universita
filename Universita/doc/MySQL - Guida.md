@@ -18,6 +18,10 @@ schtasks /run /tn "Stop_MySQL80"
 
 schtasks /run /tn "Start_MySQL80"
 
+schtasks /delete /tn "Stop_MySQL80" /f
+
+schtasks /delete /tn "Start_MySQL80" /f
+
 sc query mysql80 "Mostra se il servizio è attivo o disattivato"
 
 NOME_SERVIZIO: mysql80
@@ -44,4 +48,8 @@ NOME_SERVIZIO: mysql80
     - Argomenti: `/run /tn "Start_MySQL80"`
     - Directory di Lavoro: Lasciata vuota.
 
-![image.png](image.png)
+Eventualmente che si vuole interrompere o avviare il servizio manualmente senza automazione, 
+avviare sempre cmd da amministratore
+
+- **net start MySQL80**
+- **net stop MySQL80**
