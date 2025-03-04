@@ -1,98 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="uniproj@localhost">
+<dataSource name="docker_uniproj">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
     <root id="1">
-      <DefaultCasing>lower/lower</DefaultCasing>
+      <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>|root||root|localhost|ALTER|G
+      <Grants>|root||root||ALTER|G
+|root||root|localhost|ALTER|G
+|root||root||ALTER ROUTINE|G
 |root||root|localhost|ALTER ROUTINE|G
+|root||root||APPLICATION_PASSWORD_ADMIN|G
 |root||root|localhost|APPLICATION_PASSWORD_ADMIN|G
 |root||mysql.infoschema|localhost|AUDIT_ABORT_EXEMPT|G
 |root||mysql.session|localhost|AUDIT_ABORT_EXEMPT|G
 |root||mysql.sys|localhost|AUDIT_ABORT_EXEMPT|G
+|root||root||AUDIT_ABORT_EXEMPT|G
 |root||root|localhost|AUDIT_ABORT_EXEMPT|G
+|root||root||AUDIT_ADMIN|G
 |root||root|localhost|AUDIT_ADMIN|G
 |root||mysql.session|localhost|AUTHENTICATION_POLICY_ADMIN|G
+|root||root||AUTHENTICATION_POLICY_ADMIN|G
 |root||root|localhost|AUTHENTICATION_POLICY_ADMIN|G
 |root||mysql.session|localhost|BACKUP_ADMIN|G
+|root||root||BACKUP_ADMIN|G
 |root||root|localhost|BACKUP_ADMIN|G
+|root||root||BINLOG_ADMIN|G
 |root||root|localhost|BINLOG_ADMIN|G
+|root||root||BINLOG_ENCRYPTION_ADMIN|G
 |root||root|localhost|BINLOG_ENCRYPTION_ADMIN|G
 |root||mysql.session|localhost|CLONE_ADMIN|G
+|root||root||CLONE_ADMIN|G
 |root||root|localhost|CLONE_ADMIN|G
 |root||mysql.session|localhost|CONNECTION_ADMIN|G
+|root||root||CONNECTION_ADMIN|G
 |root||root|localhost|CONNECTION_ADMIN|G
+|root||root||CREATE|G
 |root||root|localhost|CREATE|G
+|root||root||CREATE ROLE|G
 |root||root|localhost|CREATE ROLE|G
+|root||root||CREATE ROUTINE|G
 |root||root|localhost|CREATE ROUTINE|G
+|root||root||CREATE TABLESPACE|G
 |root||root|localhost|CREATE TABLESPACE|G
+|root||root||CREATE TEMPORARY TABLES|G
 |root||root|localhost|CREATE TEMPORARY TABLES|G
+|root||root||CREATE USER|G
 |root||root|localhost|CREATE USER|G
+|root||root||CREATE VIEW|G
 |root||root|localhost|CREATE VIEW|G
+|root||root||DELETE|G
 |root||root|localhost|DELETE|G
+|root||root||DROP|G
 |root||root|localhost|DROP|G
+|root||root||DROP ROLE|G
 |root||root|localhost|DROP ROLE|G
+|root||root||ENCRYPTION_KEY_ADMIN|G
 |root||root|localhost|ENCRYPTION_KEY_ADMIN|G
+|root||root||EVENT|G
 |root||root|localhost|EVENT|G
+|root||root||EXECUTE|G
 |root||root|localhost|EXECUTE|G
+|root||root||FILE|G
 |root||root|localhost|FILE|G
 |root||mysql.infoschema|localhost|FIREWALL_EXEMPT|G
 |root||mysql.session|localhost|FIREWALL_EXEMPT|G
 |root||mysql.sys|localhost|FIREWALL_EXEMPT|G
+|root||root||FIREWALL_EXEMPT|G
 |root||root|localhost|FIREWALL_EXEMPT|G
+|root||root||FLUSH_OPTIMIZER_COSTS|G
 |root||root|localhost|FLUSH_OPTIMIZER_COSTS|G
+|root||root||FLUSH_STATUS|G
 |root||root|localhost|FLUSH_STATUS|G
+|root||root||FLUSH_TABLES|G
 |root||root|localhost|FLUSH_TABLES|G
+|root||root||FLUSH_USER_RESOURCES|G
 |root||root|localhost|FLUSH_USER_RESOURCES|G
+|root||root||GROUP_REPLICATION_ADMIN|G
 |root||root|localhost|GROUP_REPLICATION_ADMIN|G
+|root||root||GROUP_REPLICATION_STREAM|G
 |root||root|localhost|GROUP_REPLICATION_STREAM|G
+|root||root||INDEX|G
 |root||root|localhost|INDEX|G
+|root||root||INNODB_REDO_LOG_ARCHIVE|G
 |root||root|localhost|INNODB_REDO_LOG_ARCHIVE|G
+|root||root||INNODB_REDO_LOG_ENABLE|G
 |root||root|localhost|INNODB_REDO_LOG_ENABLE|G
+|root||root||INSERT|G
 |root||root|localhost|INSERT|G
+|root||root||LOCK TABLES|G
 |root||root|localhost|LOCK TABLES|G
+|root||root||PASSWORDLESS_USER_ADMIN|G
 |root||root|localhost|PASSWORDLESS_USER_ADMIN|G
 |root||mysql.session|localhost|PERSIST_RO_VARIABLES_ADMIN|G
+|root||root||PERSIST_RO_VARIABLES_ADMIN|G
 |root||root|localhost|PERSIST_RO_VARIABLES_ADMIN|G
+|root||root||PROCESS|G
 |root||root|localhost|PROCESS|G
+|root||root||REFERENCES|G
 |root||root|localhost|REFERENCES|G
+|root||root||RELOAD|G
 |root||root|localhost|RELOAD|G
+|root||root||REPLICATION CLIENT|G
 |root||root|localhost|REPLICATION CLIENT|G
+|root||root||REPLICATION SLAVE|G
 |root||root|localhost|REPLICATION SLAVE|G
+|root||root||REPLICATION_APPLIER|G
 |root||root|localhost|REPLICATION_APPLIER|G
+|root||root||REPLICATION_SLAVE_ADMIN|G
 |root||root|localhost|REPLICATION_SLAVE_ADMIN|G
+|root||root||RESOURCE_GROUP_ADMIN|G
 |root||root|localhost|RESOURCE_GROUP_ADMIN|G
+|root||root||RESOURCE_GROUP_USER|G
 |root||root|localhost|RESOURCE_GROUP_USER|G
+|root||root||ROLE_ADMIN|G
 |root||root|localhost|ROLE_ADMIN|G
 |root||mysql.infoschema|localhost|SELECT|G
+|root||root||SELECT|G
 |root||root|localhost|SELECT|G
+|root||root||SENSITIVE_VARIABLES_OBSERVER|G
 |root||root|localhost|SENSITIVE_VARIABLES_OBSERVER|G
+|root||root||SERVICE_CONNECTION_ADMIN|G
 |root||root|localhost|SERVICE_CONNECTION_ADMIN|G
 |root||mysql.session|localhost|SESSION_VARIABLES_ADMIN|G
+|root||root||SESSION_VARIABLES_ADMIN|G
 |root||root|localhost|SESSION_VARIABLES_ADMIN|G
+|root||root||SET_USER_ID|G
 |root||root|localhost|SET_USER_ID|G
+|root||root||SHOW DATABASES|G
 |root||root|localhost|SHOW DATABASES|G
+|root||root||SHOW VIEW|G
 |root||root|localhost|SHOW VIEW|G
+|root||root||SHOW_ROUTINE|G
 |root||root|localhost|SHOW_ROUTINE|G
 |root||mysql.session|localhost|SHUTDOWN|G
+|root||root||SHUTDOWN|G
 |root||root|localhost|SHUTDOWN|G
 |root||mysql.session|localhost|SUPER|G
+|root||root||SUPER|G
 |root||root|localhost|SUPER|G
 |root||mysql.infoschema|localhost|SYSTEM_USER|G
 |root||mysql.session|localhost|SYSTEM_USER|G
 |root||mysql.sys|localhost|SYSTEM_USER|G
+|root||root||SYSTEM_USER|G
 |root||root|localhost|SYSTEM_USER|G
 |root||mysql.session|localhost|SYSTEM_VARIABLES_ADMIN|G
+|root||root||SYSTEM_VARIABLES_ADMIN|G
 |root||root|localhost|SYSTEM_VARIABLES_ADMIN|G
+|root||root||TABLE_ENCRYPTION_ADMIN|G
 |root||root|localhost|TABLE_ENCRYPTION_ADMIN|G
+|root||root||TELEMETRY_LOG_ADMIN|G
 |root||root|localhost|TELEMETRY_LOG_ADMIN|G
+|root||root||TRIGGER|G
 |root||root|localhost|TRIGGER|G
+|root||root||UPDATE|G
 |root||root|localhost|UPDATE|G
+|root||root||XA_RECOVER_ADMIN|G
 |root||root|localhost|XA_RECOVER_ADMIN|G
+|root||root||grant option|G
 |root||root|localhost|grant option|G
 performance_schema|schema||mysql.session|localhost|SELECT|G
-sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
+sys|schema||mysql.sys|localhost|TRIGGER|G
+uniproj|schema||zteo||ALTER|G
+uniproj|schema||zteo||ALTER ROUTINE|G
+uniproj|schema||zteo||CREATE|G
+uniproj|schema||zteo||CREATE ROUTINE|G
+uniproj|schema||zteo||CREATE TEMPORARY TABLES|G
+uniproj|schema||zteo||CREATE VIEW|G
+uniproj|schema||zteo||DELETE|G
+uniproj|schema||zteo||DROP|G
+uniproj|schema||zteo||EVENT|G
+uniproj|schema||zteo||EXECUTE|G
+uniproj|schema||zteo||INDEX|G
+uniproj|schema||zteo||INSERT|G
+uniproj|schema||zteo||LOCK TABLES|G
+uniproj|schema||zteo||REFERENCES|G
+uniproj|schema||zteo||SELECT|G
+uniproj|schema||zteo||SHOW VIEW|G
+uniproj|schema||zteo||TRIGGER|G
+uniproj|schema||zteo||UPDATE|G</Grants>
       <ServerVersion>8.0.41</ServerVersion>
     </root>
     <collation id="2" parent="1" name="armscii8_bin">
@@ -1008,7 +1093,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="uniproj">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-03-04.19:21:14</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-03-04.18:53:09</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="mysql.infoschema">
@@ -1027,307 +1112,317 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Plugin>caching_sha2_password</Plugin>
     </user>
     <user id="296" parent="1" name="root">
+      <Plugin>caching_sha2_password</Plugin>
+    </user>
+    <user id="297" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="297" parent="292" name="dipartimento">
+    <user id="298" parent="1" name="zteo">
+      <Plugin>caching_sha2_password</Plugin>
+    </user>
+    <table id="299" parent="292" name="dipartimento">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="298" parent="292" name="docente">
+    <table id="300" parent="292" name="docente">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="299" parent="292" name="esame">
+    <table id="301" parent="292" name="esame">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="300" parent="292" name="materia">
+    <table id="302" parent="292" name="materia">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="301" parent="292" name="studente">
+    <table id="303" parent="292" name="studente">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="302" parent="297" name="id">
-      <AutoIncrement>2</AutoIncrement>
+    <column id="304" parent="299" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="303" parent="297" name="nome">
+    <column id="305" parent="299" name="nome">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="304" parent="297" name="PRIMARY">
+    <index id="306" parent="299" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="305" parent="297" name="UKdkcpb39icu3hibapiawkh2s2y">
+    <index id="307" parent="299" name="UKdkcpb39icu3hibapiawkh2s2y">
       <ColNames>nome</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="306" parent="297" name="PRIMARY">
+    <key id="308" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="307" parent="297" name="UKdkcpb39icu3hibapiawkh2s2y">
+    <key id="309" parent="299" name="UKdkcpb39icu3hibapiawkh2s2y">
       <UnderlyingIndexName>UKdkcpb39icu3hibapiawkh2s2y</UnderlyingIndexName>
     </key>
-    <column id="308" parent="298" name="id">
-      <AutoIncrement>5</AutoIncrement>
+    <column id="310" parent="300" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="309" parent="298" name="cognome">
+    <column id="311" parent="300" name="cognome">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="310" parent="298" name="email">
+    <column id="312" parent="300" name="email">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="311" parent="298" name="nome">
+    <column id="313" parent="300" name="nome">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="312" parent="298" name="dipartimento_id">
+    <column id="314" parent="300" name="dipartimento_id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="313" parent="298" name="FKionujxyl5gy5l7esx0760b1u5">
+    <foreign-key id="315" parent="300" name="FKionujxyl5gy5l7esx0760b1u5">
       <ColNames>dipartimento_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>dipartimento</RefTableName>
     </foreign-key>
-    <index id="314" parent="298" name="PRIMARY">
+    <index id="316" parent="300" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="315" parent="298" name="UKcjaekp5lnot6c6dokjntmexhj">
+    <index id="317" parent="300" name="UKcjaekp5lnot6c6dokjntmexhj">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="316" parent="298" name="FKionujxyl5gy5l7esx0760b1u5">
+    <index id="318" parent="300" name="FKionujxyl5gy5l7esx0760b1u5">
       <ColNames>dipartimento_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="298" name="PRIMARY">
+    <key id="319" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="318" parent="298" name="UKcjaekp5lnot6c6dokjntmexhj">
+    <key id="320" parent="300" name="UKcjaekp5lnot6c6dokjntmexhj">
       <UnderlyingIndexName>UKcjaekp5lnot6c6dokjntmexhj</UnderlyingIndexName>
     </key>
-    <column id="319" parent="299" name="data">
+    <check id="321" parent="301" name="esame_chk_1">
+      <NameSurrogate>1</NameSurrogate>
+      <Predicate>(`voto` &gt;= 17) and (`voto` &lt;= 30)</Predicate>
+    </check>
+    <column id="322" parent="301" name="data">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="320" parent="299" name="bocciature">
+    <column id="323" parent="301" name="bocciature">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="321" parent="299" name="voto">
+    <column id="324" parent="301" name="voto">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="322" parent="299" name="studente_id">
+    <column id="325" parent="301" name="studente_id">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="323" parent="299" name="materia_id">
+    <column id="326" parent="301" name="materia_id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="324" parent="299" name="FK9thaco9i1vtvblr36htjh46a3">
+    <foreign-key id="327" parent="301" name="FK9thaco9i1vtvblr36htjh46a3">
       <ColNames>studente_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>studente</RefTableName>
     </foreign-key>
-    <foreign-key id="325" parent="299" name="FK93fwr31k65jhh6h6okrmlbovx">
+    <foreign-key id="328" parent="301" name="FK93fwr31k65jhh6h6okrmlbovx">
       <ColNames>materia_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>materia</RefTableName>
     </foreign-key>
-    <index id="326" parent="299" name="PRIMARY">
+    <index id="329" parent="301" name="PRIMARY">
       <ColNames>data
 materia_id
 studente_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="327" parent="299" name="FK9thaco9i1vtvblr36htjh46a3">
+    <index id="330" parent="301" name="FK9thaco9i1vtvblr36htjh46a3">
       <ColNames>studente_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="328" parent="299" name="FK93fwr31k65jhh6h6okrmlbovx">
+    <index id="331" parent="301" name="FK93fwr31k65jhh6h6okrmlbovx">
       <ColNames>materia_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="329" parent="299" name="PRIMARY">
+    <key id="332" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <check id="330" parent="300" name="materia_chk_1">
+    <check id="333" parent="302" name="materia_chk_1">
       <NameSurrogate>1</NameSurrogate>
       <Predicate>(`cfu` &gt;= 0) and (`cfu` &lt;= 180)</Predicate>
     </check>
-    <column id="331" parent="300" name="id">
-      <AutoIncrement>6</AutoIncrement>
+    <column id="334" parent="302" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="332" parent="300" name="anno">
+    <column id="335" parent="302" name="anno">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>smallint|0s</StoredType>
     </column>
-    <column id="333" parent="300" name="cfu">
+    <column id="336" parent="302" name="cfu">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>smallint|0s</StoredType>
     </column>
-    <column id="334" parent="300" name="nome_materia">
+    <column id="337" parent="302" name="nome_materia">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="335" parent="300" name="dipartimento_id">
+    <column id="338" parent="302" name="dipartimento_id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="336" parent="300" name="docente_id">
+    <column id="339" parent="302" name="docente_id">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="337" parent="300" name="FKk0bsdeodcwl13m6vkkox0v794">
+    <foreign-key id="340" parent="302" name="FKk0bsdeodcwl13m6vkkox0v794">
       <ColNames>dipartimento_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>dipartimento</RefTableName>
     </foreign-key>
-    <foreign-key id="338" parent="300" name="FKjpm7iqo7yjybgdl1ych6sqr8f">
+    <foreign-key id="341" parent="302" name="FKjpm7iqo7yjybgdl1ych6sqr8f">
       <ColNames>docente_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>docente</RefTableName>
     </foreign-key>
-    <index id="339" parent="300" name="PRIMARY">
+    <index id="342" parent="302" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="340" parent="300" name="FKk0bsdeodcwl13m6vkkox0v794">
+    <index id="343" parent="302" name="FKk0bsdeodcwl13m6vkkox0v794">
       <ColNames>dipartimento_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="341" parent="300" name="FKjpm7iqo7yjybgdl1ych6sqr8f">
+    <index id="344" parent="302" name="FKjpm7iqo7yjybgdl1ych6sqr8f">
       <ColNames>docente_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="342" parent="300" name="PRIMARY">
+    <key id="345" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <check id="343" parent="301" name="studente_chk_1">
+    <check id="346" parent="303" name="studente_chk_1">
       <NameSurrogate>1</NameSurrogate>
       <Predicate>(`cfu_totali` &lt;= 180) and (`cfu_totali` &gt;= 0)</Predicate>
     </check>
-    <column id="344" parent="301" name="id">
-      <AutoIncrement>6</AutoIncrement>
+    <column id="347" parent="303" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="345" parent="301" name="cfu_totali">
+    <column id="348" parent="303" name="cfu_totali">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="346" parent="301" name="cognome">
+    <column id="349" parent="303" name="cognome">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="347" parent="301" name="corso_di_laurea">
+    <column id="350" parent="303" name="corso_di_laurea">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="348" parent="301" name="email">
+    <column id="351" parent="303" name="email">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="349" parent="301" name="matricola">
+    <column id="352" parent="303" name="matricola">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="350" parent="301" name="nome">
+    <column id="353" parent="303" name="nome">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="351" parent="301" name="dipartimento_id">
+    <column id="354" parent="303" name="dipartimento_id">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="352" parent="301" name="FK742ygxfxtssh1gfcr0hrusqa5">
+    <foreign-key id="355" parent="303" name="FK742ygxfxtssh1gfcr0hrusqa5">
       <ColNames>dipartimento_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>dipartimento</RefTableName>
     </foreign-key>
-    <index id="353" parent="301" name="PRIMARY">
+    <index id="356" parent="303" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="354" parent="301" name="UKjvhrcboopjnmp9phipk9x9l6r">
+    <index id="357" parent="303" name="UKjvhrcboopjnmp9phipk9x9l6r">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="355" parent="301" name="UK8y9780chc604ral2ac928rr6i">
+    <index id="358" parent="303" name="UK8y9780chc604ral2ac928rr6i">
       <ColNames>matricola</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="356" parent="301" name="FK742ygxfxtssh1gfcr0hrusqa5">
+    <index id="359" parent="303" name="FK742ygxfxtssh1gfcr0hrusqa5">
       <ColNames>dipartimento_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="357" parent="301" name="PRIMARY">
+    <key id="360" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="358" parent="301" name="UKjvhrcboopjnmp9phipk9x9l6r">
+    <key id="361" parent="303" name="UKjvhrcboopjnmp9phipk9x9l6r">
       <UnderlyingIndexName>UKjvhrcboopjnmp9phipk9x9l6r</UnderlyingIndexName>
     </key>
-    <key id="359" parent="301" name="UK8y9780chc604ral2ac928rr6i">
+    <key id="362" parent="303" name="UK8y9780chc604ral2ac928rr6i">
       <UnderlyingIndexName>UK8y9780chc604ral2ac928rr6i</UnderlyingIndexName>
     </key>
   </database-model>

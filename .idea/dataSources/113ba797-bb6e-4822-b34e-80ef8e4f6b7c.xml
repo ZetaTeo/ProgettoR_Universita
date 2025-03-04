@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="uniproj@localhost">
+<dataSource name="docker">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
     <root id="1">
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -1008,7 +1008,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="uniproj">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-03-04.19:21:14</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-03-04.18:45:17</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="mysql.infoschema">
@@ -1192,7 +1192,7 @@ studente_id</ColNames>
       <Predicate>(`cfu` &gt;= 0) and (`cfu` &lt;= 180)</Predicate>
     </check>
     <column id="331" parent="300" name="id">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
@@ -1255,7 +1255,7 @@ studente_id</ColNames>
       <Predicate>(`cfu_totali` &lt;= 180) and (`cfu_totali` &gt;= 0)</Predicate>
     </check>
     <column id="344" parent="301" name="id">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
