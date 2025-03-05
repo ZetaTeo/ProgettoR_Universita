@@ -16,15 +16,15 @@ schtasks /query
 
 ```
 
-Comandi per avviare le tasks
+**Comandi per avviare le tasks**
 
 ```bash
+# Comandi da inserire nel file bat
 schtasks /run /tn "Stop_MySQL80"
-
 schtasks /run /tn "Start_MySQL80"
 
+# Per cancellare le routine
 schtasks /delete /tn "Stop_MySQL80" /f
-
 schtasks /delete /tn "Start_MySQL80" /f
 
 sc query mysql80 "Mostra se il servizio è attivo o disattivato"
@@ -55,8 +55,11 @@ NOME_SERVIZIO: mysql80
     - Argomenti: `/run /tn "Start_MySQL80"`
     - Directory di Lavoro: Lasciata vuota.
 
-Eventualmente che si vuole interrompere o avviare il servizio manualmente senza automazione, 
-avviare sempre cmd da amministratore
+**Eventualmente per interrompere o avviare il servizio manualmente senza automazione, 
+avviare sempre cmd da amministratore, i comandi sono i seguenti:**
 
-- **net start MySQL80**
-- **net stop MySQL80**
+```bash
+net start MySQL80
+
+net stop MySQL80
+```
