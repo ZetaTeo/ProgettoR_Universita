@@ -29,7 +29,7 @@
 - **PK: id**
 - **nome**
 
-############################################################################################################
+
 # Da implementare successivamente
 
 ### Aula
@@ -41,10 +41,15 @@
 ## Relazioni
 
 Relazioni:
-Ogni Studente è associato a un Dipartimento.
-Ogni Docente è assegnato a un Dipartimento.
-Ogni Materia ha un Docente e appartiene a un Dipartimento.
-Gli Esami collegano Studenti e Materie, come è corretto.
+- Ogni Studente è associato a un Dipartimento.
+- Ogni Docente è assegnato a un Dipartimento.
+- Ogni Materia ha un Docente e appartiene a un Dipartimento.
+- Ogni "Esame" è identificato univocamente dalla combinazione di "studente_id" e "materia_id". Questo significa che:
+
+Un singolo studente può sostenere più esami per diverse materie.
+Una singola materia può essere sostenuta da più studenti. Perciò, entrambe 
+le chiavi primarie sono necessarie per garantire l'unicità di ogni record di esame e 
+per rappresentare correttamente la relazione tra gli studenti e le materie che studiano.
 
 # Metodo interessante: inserimento esame
 
