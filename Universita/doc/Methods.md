@@ -1,7 +1,4 @@
-# Spiegazione metodi
-
-
-**Esame Service: aggiungi Esame**
+# Esame Service: aggiungi Esame
 
 
 Controlli:
@@ -27,4 +24,13 @@ Esame != null
 **Caso voto > 18**
 - Aumento i cfu dello studente e salvo l'aggiornamento nella tabella studente
 
+# Nozioni
 
+
+
+
+
+# Studente Service: cerca studente per dipartimento
+
+- Se si vuole restituire un dto è necessario effettuare una conversione
+  da studente a studenteDto

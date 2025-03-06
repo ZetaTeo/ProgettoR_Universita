@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import zteo.esercitazione.Universita.dto.StudenteDto;
 import zteo.esercitazione.Universita.entity.Studente;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public interface StudenteRepository extends JpaRepository<Studente, Integer> {
 
     Optional <Studente> findByMatricola(String matricola);
 
-    @Query ("SELECT s FROM Studente s WHERE s.dipartimento.nome = :dipartimento")
-    List<Studente> findByDipartimento(String dipartimento);
+    @Query ("SELECT s FROM Studente s WHERE s.dipartimento.nome = :nomeDipartimento")
+    List<Studente> findByDipartimento(String nomeDipartimento);
+
 
 
 

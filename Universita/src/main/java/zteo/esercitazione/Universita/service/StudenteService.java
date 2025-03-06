@@ -13,7 +13,10 @@ import zteo.esercitazione.Universita.exception.ResourceNotFoundException;
 import zteo.esercitazione.Universita.repository.DipartimentoRepository;
 import zteo.esercitazione.Universita.repository.StudenteRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -25,8 +28,7 @@ public class StudenteService {
 
 
     // |CREATE
-    public StudenteDto createStudente(StudenteDto studenteDto)
-    {
+    public StudenteDto createStudente(StudenteDto studenteDto) {
         Dipartimento dipartimento = dipartimentoRepository.findByName(studenteDto.getDipartimento())
                 .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + studenteDto.getDipartimento() + " non trovato"));
 
@@ -44,7 +46,7 @@ public class StudenteService {
         return studenteDto.fromEntityToDto(studente);
     }
 
-  // |UPDATE
+    // |UPDATE
 
     public StudenteDto updateEmailOrMatricolaStudente(String matricolaAttuale, String nuovaMatricola, String nuovaEmail) {
 
@@ -72,16 +74,67 @@ public class StudenteService {
         return StudenteDto.fromEntityToDto(studente);
     }
 
-// |DELETE
-    public void deleteStudente(String matricola)
-    {
+    // |DELETE
+    public void deleteStudente(String matricola) {
         Studente studente = studenteRepository.findByMatricola(matricola)
                 .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola: " + matricola + " non trovato."));
 
         studenteRepository.delete(studente);
     }
 
+    // Cerca per dipartimento: versione dto with stream
+    public List<StudenteDto> getAllStudentsOfDepartment(String nomeDipartimento) {
+        dipartimentoRepository.findByName(nomeDipartimento)
+                .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + nomeDipartimento + " non trovato"));
 
+        List<Studente> listaStudenti = studenteRepository.findByDipartimento(nomeDipartimento);
+
+        if (listaStudenti.isEmpty()) {
+            throw new ResourceNotFoundException("Nessuno studente trovato per il dipartimento: " + nomeDipartimento);
+        }
+        return listaStudenti.stream()
+                .map(StudenteDto::fromEntityToDto)
+                .collect(Collectors.toList());
+    }
+
+//    public List<StudenteDto> getAllStudentsOfDepartment(String nomeDipartimento) {
+//        // Trova il dipartimento, se non esiste lancia un'eccezione
+//        Dipartimento dipartimento = dipartimentoRepository.findByName(nomeDipartimento)
+//                .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + nomeDipartimento + " non trovato"));
+//
+//        // Trova tutti gli studenti associati al dipartimento
+//        List<Studente> listaStudenti = studenteRepository.findByDipartimento(dipartimento);
+//
+//        // Se la lista è vuota, lancia un'eccezione
+//        if (listaStudenti.isEmpty()) {
+//            throw new ResourceNotFoundException("Nessuno studente trovato per il dipartimento: " + nomeDipartimento);
+//        }
+//
+//        // Converte gli studenti in StudenteDto
+//        List<StudenteDto> studentiDto = new ArrayList<>();
+//        for (Studente studente : listaStudenti) {
+//            studentiDto.add(StudenteDto.fromEntityToDto(studente));
+//        }
+//
+//        return studentiDto;
+//    }
+
+
+
+    //Cerca per dipartimento: versione studente "DA CANCELLARE"
+    public List<Studente> getAllStudentsOfDepartment2(String nomeDipartimento)
+    {
+        dipartimentoRepository.findByName(nomeDipartimento)
+                .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + nomeDipartimento + " non trovato"));
+
+        List<Studente> listaStudenti = studenteRepository.findByDipartimento(nomeDipartimento);
+
+        if(listaStudenti.isEmpty())
+        {
+            throw new ResourceNotFoundException("Nessuno studente trovato per il dipartimento: " + nomeDipartimento);
+        }
+        return listaStudenti;
+    }
 
 
 

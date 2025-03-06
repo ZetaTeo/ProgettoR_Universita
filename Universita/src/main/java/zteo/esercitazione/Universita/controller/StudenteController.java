@@ -15,6 +15,7 @@ import zteo.esercitazione.Universita.dto.StudenteDto;
 import zteo.esercitazione.Universita.entity.Studente;
 import zteo.esercitazione.Universita.service.StudenteService;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -62,4 +63,19 @@ public class StudenteController {
         return ResponseEntity.ok("Studente con matricola " + matricola + " eliminato con successo.");
     }
 
+    //vers dto
+    @GetMapping("/getAllStudentsOfDepartment/{nomeDipartimento}")
+    @Operation(summary = "Restituisce tutti gli studenti di un dipartimento",
+            tags = "Operazioni - Studente")
+    public ResponseEntity<List<StudenteDto>> getAllStudentsOfDepartment(@PathVariable String nomeDipartimento)
+    {
+        return ResponseEntity.ok(studenteService.getAllStudentsOfDepartment(nomeDipartimento));
+    }
+
+    //vers entity
+    @GetMapping("/getAllStudentsOfDepartment2/{nomeDipartimento}")
+    public ResponseEntity<List<Studente>> getAllStudentsOfDepartment2(@PathVariable String nomeDipartimento)
+    {
+        return ResponseEntity.ok(studenteService.getAllStudentsOfDepartment2(nomeDipartimento));
+    }
 }
