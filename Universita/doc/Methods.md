@@ -24,7 +24,14 @@ Esame != null
 **Caso voto > 18**
 - Aumento i cfu dello studente e salvo l'aggiornamento nella tabella studente
 
-# Nozioni
+# Aggiornamento per nuova implementazione:
+
+- L'esame può essere aggiunto solo se la materia risulta essere del dipartimento uguale al dipartimento dello studente
+- La query potrebbe essere di questo tipo:
+```sql
+SELECT * FROM materia WHERE nome = 'xyz' AND dipartimento = 'dipartimentoStudente'
+```
+
 
 
 
