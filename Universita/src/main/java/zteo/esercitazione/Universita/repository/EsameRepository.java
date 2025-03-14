@@ -14,7 +14,6 @@ public interface EsameRepository extends JpaRepository<Esame, Integer> {
 
     Optional<Esame> findByStudenteAndMateria(Studente studente, Materia materia);
 
-    //Optional<Esame> findByStudenteAndMateriaAndData(Studente studente, Materia materia, LocalDate now);
 
     @Query(value = """
     SELECT EXISTS (
@@ -24,7 +23,8 @@ public interface EsameRepository extends JpaRepository<Esame, Integer> {
         WHERE s.id = :studenteId AND m.id = :materiaId
     )
 """, nativeQuery = true)
-    int verificaAppartenenzaDipartimento( int studenteId,  int materiaId);
+Integer verificaAppartenenzaDipartimento(int studenteId, int materiaId);
+
 
 
 

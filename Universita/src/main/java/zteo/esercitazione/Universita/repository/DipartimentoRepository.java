@@ -13,6 +13,6 @@ public interface DipartimentoRepository extends JpaRepository<Dipartimento, Inte
      @Query("SELECT d FROM Dipartimento d WHERE d.nome = :nome")
      Optional<Dipartimento> findByName(String nome);
 
-     //List<StudenteDto> findByDipartimentoNome(String nomeDipartimento);
+
 
 }

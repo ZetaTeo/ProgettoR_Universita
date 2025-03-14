@@ -72,10 +72,5 @@ public class StudenteController {
         return ResponseEntity.ok(studenteService.getAllStudentsOfDepartment(nomeDipartimento));
     }
 
-    //vers entity
-    @GetMapping("/getAllStudentsOfDepartment2/{nomeDipartimento}")
-    public ResponseEntity<List<Studente>> getAllStudentsOfDepartment2(@PathVariable String nomeDipartimento)
-    {
-        return ResponseEntity.ok(studenteService.getAllStudentsOfDepartment2(nomeDipartimento));
-    }
+
 }

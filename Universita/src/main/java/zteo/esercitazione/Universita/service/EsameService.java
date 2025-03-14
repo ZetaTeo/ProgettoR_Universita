@@ -24,11 +24,6 @@ public class EsameService {
     private final MateriaRepository materiaRepository;
 
 
-    private boolean verificaDipartimenti(int studenteId, int materiaId) {
-        int esiste = esameRepository.verificaAppartenenzaDipartimento(studenteId, materiaId);
-        return esiste != 0;
-    }
-
 
     public Esame aggiungiEsame(String materiaEsame, String matricola, int votoEsame, LocalDate dataEsame) {
 
@@ -38,7 +33,9 @@ public class EsameService {
         Materia materia = materiaRepository.findByNomeMateria(materiaEsame)
                 .orElseThrow(() -> new ResourceNotFoundException("Materia " + materiaEsame + " non trovata"));
 
-        if(!verificaDipartimenti(studente.getId(), materia.getId()))
+
+        boolean esiste = esameRepository.verificaAppartenenzaDipartimento(studente.getId(), materia.getId()) != 0;
+        if(!esiste)
             throw new IllegalStateException("Studente e materia non appartengono allo stesso dipartimento");
 
         Esame esame = esameRepository.findByStudenteAndMateria(studente, materia).orElse(null);

@@ -26,18 +26,40 @@ Esame != null
 
 # Aggiornamento per nuova implementazione:
 
-- L'esame può essere aggiunto solo se la materia risulta essere del dipartimento uguale al dipartimento dello studente
-- La query potrebbe essere di questo tipo:
+- Considerando che le materie sono legate ai dipartimenti cosi come gli studenti è necessario controllare che l'esame aggiunto
+  sia effettivamente legato al dipartimento corretto.
+
+La query svolge i seguenti passaggi:
+
+- Si verifica in primis se il dipartimento dello studente è uguale a quello della materia.
+- La condizione WHERE dice (l'id dello studente/materia deve essere uguale a quello in ingresso
+- Si verifica se esiste almeno una riga (SELECT 1) che soddisfa la condizione
+- EXISTS restituisce un wrapper (Long, Integer) essendo un valore booleano (0,1) può essere trattato come tale successivamente
+
 ```sql
-SELECT * FROM materia WHERE nome = 'xyz' AND dipartimento = 'dipartimentoStudente'
+    @Query(value = """
+    SELECT EXISTS (
+        SELECT 1 
+        FROM studente s 
+        JOIN materia m ON s.dipartimento_id = m.dipartimento_id
+        WHERE s.id = :studenteId AND m.id = :materiaId
+    )
+""", nativeQuery = true)
+Integer verificaAppartenenzaDipartimento( int studenteId,  int materiaId);
 ```
 
+```java
+  boolean esiste = esameRepository.verificaAppartenenzaDipartimento(studente.getId(), materia.getId()) != 0;
+        if(!esiste)
+        throw new IllegalStateException("Studente e materia non appartengono allo stesso dipartimento");
+```
+Casi che posso ritrovare:
+- esiste = 0 != 0 -> false
+- esiste = 1 != 0 -> true
+
+Di conseguenza:
+
+- Se il valore di esiste è false ovvero 0, allora l'eccezione viene lanciata.
+- Se il valore di esiste è true ovvero 1, il codice continua senza problemi.
 
 
-
-
-
-# Studente Service: cerca studente per dipartimento
-
-- Se si vuole restituire un dto è necessario effettuare una conversione
-  da studente a studenteDto

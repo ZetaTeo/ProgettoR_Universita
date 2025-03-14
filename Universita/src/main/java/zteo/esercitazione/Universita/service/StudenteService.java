@@ -97,44 +97,9 @@ public class StudenteService {
                 .collect(Collectors.toList());
     }
 
-//    public List<StudenteDto> getAllStudentsOfDepartment(String nomeDipartimento) {
-//        // Trova il dipartimento, se non esiste lancia un'eccezione
-//        Dipartimento dipartimento = dipartimentoRepository.findByName(nomeDipartimento)
-//                .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + nomeDipartimento + " non trovato"));
-//
-//        // Trova tutti gli studenti associati al dipartimento
-//        List<Studente> listaStudenti = studenteRepository.findByDipartimento(dipartimento);
-//
-//        // Se la lista è vuota, lancia un'eccezione
-//        if (listaStudenti.isEmpty()) {
-//            throw new ResourceNotFoundException("Nessuno studente trovato per il dipartimento: " + nomeDipartimento);
-//        }
-//
-//        // Converte gli studenti in StudenteDto
-//        List<StudenteDto> studentiDto = new ArrayList<>();
-//        for (Studente studente : listaStudenti) {
-//            studentiDto.add(StudenteDto.fromEntityToDto(studente));
-//        }
-//
-//        return studentiDto;
-//    }
 
 
 
-    //Cerca per dipartimento: versione studente "DA CANCELLARE"
-    public List<Studente> getAllStudentsOfDepartment2(String nomeDipartimento)
-    {
-        dipartimentoRepository.findByName(nomeDipartimento)
-                .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + nomeDipartimento + " non trovato"));
-
-        List<Studente> listaStudenti = studenteRepository.findByDipartimento(nomeDipartimento);
-
-        if(listaStudenti.isEmpty())
-        {
-            throw new ResourceNotFoundException("Nessuno studente trovato per il dipartimento: " + nomeDipartimento);
-        }
-        return listaStudenti;
-    }
 
 
 
