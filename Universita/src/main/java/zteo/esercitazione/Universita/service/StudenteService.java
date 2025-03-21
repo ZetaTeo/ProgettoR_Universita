@@ -39,7 +39,7 @@ public class StudenteService {
         studente.setEmail(studenteDto.getEmail());
         studente.setMatricola(studenteDto.getMatricola());
         studente.setCorsoDiLaurea(studenteDto.getCorsoDiLaurea());
-        studente.setCfuTotali(studenteDto.getCfuTotali());
+       // studente.setCfuTotali(studenteDto.getCfuTotali());
         studente.setDipartimento(dipartimento);
 
         studenteRepository.save(studente);

@@ -43,6 +43,21 @@ public class Studente {
     @Max(value = 180, message = "CFU cannot exceed 180")
     private int cfuTotali = 0;
 
+    // ===================================== nuova aggiunta
+    @Min(value = 0, message = "media artimetica must be a non-negative number")
+    @Max(value = 30, message = "media aritmetica cannot exceed 30")
+    private double mediaAritmetica = 0.0;
+
+    @Min(value = 0, message = "media ponderata must be a non-negative number")
+    @Max(value = 30, message = "media ponderata cannot exceed 30")
+    private double mediaPonderata = 0.0;
+
+    @Min(value = 0, message = "media di conseguimento must be a non-negative number")
+    @Max(value = 110, message = "media di conseguimento cannot exceed 30")
+    private double mediaDiConseguimento = 0.0;
+    // ===================================== nuova aggiunta
+
+
     @Column(nullable = false)
     @NotBlank(message = "Il corso di laurea non può essere vuoto")
     private String corsoDiLaurea;

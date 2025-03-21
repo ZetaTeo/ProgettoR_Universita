@@ -1,20 +1,10 @@
 package zteo.esercitazione.Universita.dto;
 
 
-
-import jakarta.validation.constraints.*;
 import lombok.*;
 import zteo.esercitazione.Universita.entity.Studente;
 
-/*
-Se desideri mantenere il StudenteDto e non creare un DTO separato,
-puoi usare @JsonView per controllare quali proprietà vengono mostrate su Swagger.
-* @JsonView(Views.Update.class)
-    private String email;
 
-    @JsonView(Views.Update.class)
-    private String matricola;
-* */
 
 @Data
 @NoArgsConstructor
@@ -36,6 +26,9 @@ public class StudenteDto {
 
     private String dipartimento;
 
+    private double mediaAritmetica;
+    private double mediaPonderata;
+    private double mediaDiConseguimento;
 
 
     public static StudenteDto fromEntityToDto(Studente studente)
@@ -48,8 +41,10 @@ public class StudenteDto {
                   studente.getMatricola(),
                   studente.getCorsoDiLaurea(),
                   studente.getCfuTotali(),
-                  studente.getDipartimento().getNome()
-
+                  studente.getDipartimento().getNome(),
+                  studente.getMediaAritmetica(),
+                  studente.getMediaPonderata(),
+                  studente.getMediaDiConseguimento()
                 );
     }
 

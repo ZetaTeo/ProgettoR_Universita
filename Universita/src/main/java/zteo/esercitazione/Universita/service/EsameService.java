@@ -13,6 +13,7 @@ import zteo.esercitazione.Universita.repository.MateriaRepository;
 import zteo.esercitazione.Universita.repository.StudenteRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,50 @@ public class EsameService {
     private final StudenteRepository studenteRepository;
     private final MateriaRepository materiaRepository;
 
+    public double dueNumDecimali(double num)
+    {
+        return Math.round(num * 100.0) / 100.0;
+    }
+
+    public void aggiornaMedie(String matricola)
+    {
+        Studente studente = studenteRepository.findByMatricola(matricola).orElseThrow(
+                () -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
+
+        List<Esame> listaEsamiPositivi = esameRepository.findByStudenteAndVotoGreaterThanEqual(matricola, 18);
+
+        if(listaEsamiPositivi.isEmpty())
+        {
+
+            if(studente.getCfuTotali() > 0) {
+                studente.setMediaAritmetica(0.0);
+                studente.setMediaPonderata(0.0);
+                studente.setMediaDiConseguimento(0.0);
+                studente.setCfuTotali(0);
+            }
+        }else
+        {
+            int sommaPesata = 0;
+            int sommaCfu = 0;
+            int sommaVoti = 0;
+
+            for(Esame esame : listaEsamiPositivi)
+            {
+                sommaPesata += esame.getVoto() * esame.getMateria().getCfu();
+                sommaCfu += esame.getMateria().getCfu();
+                sommaVoti += esame.getVoto();
+            }
+
+            studente.setMediaAritmetica(dueNumDecimali((double)sommaVoti / listaEsamiPositivi.size()));
+            studente.setMediaPonderata(dueNumDecimali((double) sommaPesata / sommaCfu));
+            studente.setMediaDiConseguimento(dueNumDecimali(studente.getMediaPonderata() * 110/30));
+            studente.setCfuTotali(sommaCfu);
+
+        }
+
+        studenteRepository.save(studente);
+
+    }
 
 
     public Esame aggiungiEsame(String materiaEsame, String matricola, int votoEsame, LocalDate dataEsame) {
@@ -55,13 +100,9 @@ public class EsameService {
                 esame.setBocciature(1);
         }
 
-        if (votoEsame >= 18)
-        {
-            studente.setCfuTotali(studente.getCfuTotali() + materia.getCfu());
-            studenteRepository.save(studente);
-        }
-
-        return esameRepository.save(esame);
+        esame = esameRepository.save(esame);
+        aggiornaMedie(matricola);
+        return esame;
     }
 
   

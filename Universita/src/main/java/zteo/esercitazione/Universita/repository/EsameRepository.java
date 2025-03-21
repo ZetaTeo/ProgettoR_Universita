@@ -7,6 +7,7 @@ import zteo.esercitazione.Universita.entity.Materia;
 import zteo.esercitazione.Universita.entity.Studente;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface EsameRepository extends JpaRepository<Esame, Integer> {
@@ -22,12 +23,13 @@ public interface EsameRepository extends JpaRepository<Esame, Integer> {
         JOIN materia m ON s.dipartimento_id = m.dipartimento_id
         WHERE s.id = :studenteId AND m.id = :materiaId
     )
-""", nativeQuery = true)
-Integer verificaAppartenenzaDipartimento(int studenteId, int materiaId);
+    """, nativeQuery = true)
+    Integer verificaAppartenenzaDipartimento(int studenteId, int materiaId);
 
 
+    @Query("SELECT e FROM Esame e WHERE e.studente.matricola = :matricola AND e.voto >= :voto")
+    List<Esame> findByStudenteAndVotoGreaterThanEqual(String matricola, int voto);
 
 
-
-
+    boolean existsByStudente(Studente studente);
 }
