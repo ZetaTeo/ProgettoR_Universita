@@ -32,4 +32,8 @@ public interface EsameRepository extends JpaRepository<Esame, Integer> {
 
 
     boolean existsByStudente(Studente studente);
+
+    List<Esame> findByStudente(Studente studente);
+
+    void deleteByStudente_Matricola(String matricola);
 }

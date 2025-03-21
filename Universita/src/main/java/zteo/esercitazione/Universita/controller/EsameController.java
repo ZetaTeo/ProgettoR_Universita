@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import zteo.esercitazione.Universita.dto.EsameDto;
 import zteo.esercitazione.Universita.entity.Esame;
+import zteo.esercitazione.Universita.exception.ResourceNotFoundException;
 import zteo.esercitazione.Universita.service.EsameService;
 
 @RestController
@@ -16,12 +17,7 @@ public class EsameController {
 
     private final EsameService esameService;
 
-//    @PostMapping("/aggiungiEsame")
-//    public ResponseEntity<EsameDto> aggiungiEsame(@RequestBody EsameDto esameDto)
-//    {
-//        EsameDto nuovoEsame = esameService.aggiungiEsame(esameDto.getMateria(), esameDto.getMatricola(), esameDto.getVoto());
-//        return ResponseEntity.status(HttpStatus.CREATED).body((nuovoEsame));
-//    }
+
 
     @PostMapping("/aggiungiEsame")
     public ResponseEntity<EsameDto> aggiungiEsame(@RequestBody EsameDto esameDto) {
@@ -30,14 +26,13 @@ public class EsameController {
         return ResponseEntity.status(HttpStatus.CREATED).body(esameResponse);
     }
 
+    @DeleteMapping("/rimuoviEsami")
+    public ResponseEntity<String> rimuoviTuttiGliEsami(@RequestParam String matricola)
+    {
+        esameService.rimuoviTuttiGliEsami(matricola);
+        return ResponseEntity.ok("Tutti gli esami dello studente con matricola " + matricola + " sono stati eliminati.");
+    }
 
 
-
-//    public ResponseEntity<Esame> aggiungiEsame(@RequestParam String materia,
-//                                               @RequestParam String matricola,
-//                                               @RequestParam int voto){
-//        Esame nuovoEsame = esameService.aggiungiEsame(materia, matricola, voto);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(nuovoEsame);
-//    }
 
 }

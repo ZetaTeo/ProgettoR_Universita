@@ -1,5 +1,6 @@
 package zteo.esercitazione.Universita.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,72 @@ public class EsameService {
     private final StudenteRepository studenteRepository;
     private final MateriaRepository materiaRepository;
 
+    //restituisce un tipo long meglio precisare un double
     public double dueNumDecimali(double num)
     {
-        return Math.round(num * 100.0) / 100.0;
+        return (double) Math.round(num * 100.0) / 100.0;
+    }
+
+//    public void aggiornaMedie(String matricola)
+//    {
+//        Studente studente = studenteRepository.findByMatricola(matricola).orElseThrow(
+//                () -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
+//
+//        List<Esame> listaEsamiPositivi = esameRepository.findByStudenteAndVotoGreaterThanEqual(matricola, 18);
+//
+//        if(listaEsamiPositivi.isEmpty())
+//        {
+//
+//            if(studente.getCfuTotali() > 0) {
+//                studente.setMediaAritmetica(0.0);
+//                studente.setMediaPonderata(0.0);
+//                studente.setMediaDiConseguimento(0.0);
+//                studente.setCfuTotali(0);
+//            }
+//        }else
+//        {
+//            int sommaPesata = 0;
+//            int sommaCfu = 0;
+//            int sommaVoti = 0;
+//
+//            for(Esame esame : listaEsamiPositivi)
+//            {
+//                sommaPesata += esame.getVoto() * esame.getMateria().getCfu();
+//                sommaCfu += esame.getMateria().getCfu();
+//                sommaVoti += esame.getVoto();
+//            }
+//
+//            studente.setMediaAritmetica(dueNumDecimali((double)sommaVoti / listaEsamiPositivi.size()));
+//            studente.setMediaPonderata(dueNumDecimali((double) sommaPesata / sommaCfu));
+//            studente.setMediaDiConseguimento(dueNumDecimali(studente.getMediaPonderata() * 110/30));
+//            studente.setCfuTotali(sommaCfu);
+//
+//        }
+//
+//        studenteRepository.save(studente);
+//
+//    }
+
+    @Transactional
+    public void rimuoviTuttiGliEsami(String matricola)
+    {
+        Studente studente = studenteRepository.findByMatricola(matricola)
+                .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
+
+        List<Esame> listaEsami = esameRepository.findByStudente(studente);
+
+        if(listaEsami.isEmpty())
+        {
+            throw new IllegalStateException("Non ci sono esami all'interno della lista");
+        }
+
+        esameRepository.deleteByStudente_Matricola(matricola);
+
+        studente.setMediaAritmetica(0.0);
+        studente.setMediaPonderata(0.0);
+        studente.setMediaDiConseguimento(0.0);
+        studente.setCfuTotali(0);
+        studenteRepository.save(studente);
     }
 
     public void aggiornaMedie(String matricola)
@@ -36,17 +100,6 @@ public class EsameService {
 
         List<Esame> listaEsamiPositivi = esameRepository.findByStudenteAndVotoGreaterThanEqual(matricola, 18);
 
-        if(listaEsamiPositivi.isEmpty())
-        {
-
-            if(studente.getCfuTotali() > 0) {
-                studente.setMediaAritmetica(0.0);
-                studente.setMediaPonderata(0.0);
-                studente.setMediaDiConseguimento(0.0);
-                studente.setCfuTotali(0);
-            }
-        }else
-        {
             int sommaPesata = 0;
             int sommaCfu = 0;
             int sommaVoti = 0;
@@ -63,12 +116,11 @@ public class EsameService {
             studente.setMediaDiConseguimento(dueNumDecimali(studente.getMediaPonderata() * 110/30));
             studente.setCfuTotali(sommaCfu);
 
-        }
+
 
         studenteRepository.save(studente);
 
     }
-
 
     public Esame aggiungiEsame(String materiaEsame, String matricola, int votoEsame, LocalDate dataEsame) {
 
