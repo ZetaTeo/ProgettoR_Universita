@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import zteo.esercitazione.Universita.dto.StatsStudenteDto;
 import zteo.esercitazione.Universita.dto.StudenteDto;
 import zteo.esercitazione.Universita.entity.Studente;
 
@@ -21,6 +22,21 @@ public interface StudenteRepository extends JpaRepository<Studente, Integer> {
     List<Studente> findByDipartimento(String nomeDipartimento);
 
 
+    @Query("SELECT new zteo.esercitazione.Universita.dto.StatsStudenteDto(" +
+            "CAST(COUNT(e) AS int), " + // Numero totale di esami sostenuti
+            "CAST(SUM(CASE WHEN e.voto >= 18 THEN 1 ELSE 0 END) AS int), " + // Numero di esami passati
+            "CAST(SUM(CASE WHEN e.voto < 18 THEN 1 ELSE 0 END) AS int), " + // Numero di esami bocciati
+            "CAST((SUM(CASE WHEN e.voto >= 18 THEN 1 ELSE 0 END) * 100.0) / COUNT(e) AS double), " + // Percentuale di esami superati
+            "s.mediaPonderata, " +
+            "s.mediaAritmetica, " +
+            "s.mediaDiConseguimento " +// Media ponderata precedente
+            //"CAST(AVG(e.voto) AS double), " +// Media ponderata dopo
+            //"CAST((AVG(e.voto) - s.mediaPonderata) AS double) " + // Differenza tra media attuale e media ponderata
+            ") " +
+            "FROM Studente s " +
+            "JOIN s.esami e " +
+            "WHERE s.matricola = :matricola")
+    StatsStudenteDto getStudentStats(String matricola);
 
 
 }

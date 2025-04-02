@@ -1008,7 +1008,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="uniproj">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-03-21.09:08:35</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-04-02.09:33:08</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="mysql.infoschema">
@@ -1051,7 +1051,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="302" parent="297" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>2</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
@@ -1080,7 +1080,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>UKdkcpb39icu3hibapiawkh2s2y</UnderlyingIndexName>
     </key>
     <column id="308" parent="298" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>10</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
@@ -1196,7 +1196,7 @@ studente_id</ColNames>
       <Predicate>(`cfu` &gt;= 0) and (`cfu` &lt;= 180)</Predicate>
     </check>
     <column id="332" parent="300" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>10</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
@@ -1271,7 +1271,7 @@ studente_id</ColNames>
       <Predicate>(`media_ponderata` &lt;= 30) and (`media_ponderata` &gt;= 0)</Predicate>
     </check>
     <column id="348" parent="301" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>10</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>

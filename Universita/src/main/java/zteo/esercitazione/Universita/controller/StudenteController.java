@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import zteo.esercitazione.Universita.dto.StatsStudenteDto;
 import zteo.esercitazione.Universita.dto.StudenteDto;
 import zteo.esercitazione.Universita.entity.Studente;
 import zteo.esercitazione.Universita.service.StudenteService;
@@ -70,6 +71,16 @@ public class StudenteController {
     public ResponseEntity<List<StudenteDto>> getAllStudentsOfDepartment(@PathVariable String nomeDipartimento)
     {
         return ResponseEntity.ok(studenteService.getAllStudentsOfDepartment(nomeDipartimento));
+    }
+
+
+    @GetMapping("/getStats/{matricola}")
+    @Operation(summary = "Restituisce le statistiche di uno studente",
+            tags = "Operazioni - Studente")
+    public ResponseEntity<StatsStudenteDto> getStudentStats(@PathVariable String matricola)
+    {
+        StatsStudenteDto stats = studenteService.getStudentStats(matricola);
+        return ResponseEntity.ok(stats);
     }
 
 

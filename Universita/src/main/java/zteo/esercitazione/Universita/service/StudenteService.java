@@ -5,6 +5,7 @@ package zteo.esercitazione.Universita.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import zteo.esercitazione.Universita.dto.StatsStudenteDto;
 import zteo.esercitazione.Universita.dto.StudenteDto;
 import zteo.esercitazione.Universita.entity.Dipartimento;
 import zteo.esercitazione.Universita.entity.Studente;
@@ -39,7 +40,7 @@ public class StudenteService {
         studente.setEmail(studenteDto.getEmail());
         studente.setMatricola(studenteDto.getMatricola());
         studente.setCorsoDiLaurea(studenteDto.getCorsoDiLaurea());
-       // studente.setCfuTotali(studenteDto.getCfuTotali());
+        // studente.setCfuTotali(studenteDto.getCfuTotali());
         studente.setDipartimento(dipartimento);
 
         studenteRepository.save(studente);
@@ -98,12 +99,16 @@ public class StudenteService {
     }
 
 
+    public StatsStudenteDto getStudentStats(String matricola) {
+        Studente studente = studenteRepository.findByMatricola(matricola)
+                .orElseThrow(() -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
 
+        StatsStudenteDto stats = studenteRepository.getStudentStats(matricola);
+        if (stats == null) {
+            throw new ResourceNotFoundException("Nessun esame trovato per lo studente con matricola: " + matricola);
 
-
-
-
-
-
+        }
+        return stats;
+    }
 
 }

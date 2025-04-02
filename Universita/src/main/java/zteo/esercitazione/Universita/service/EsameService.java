@@ -26,51 +26,29 @@ public class EsameService {
     private final MateriaRepository materiaRepository;
 
     //restituisce un tipo long meglio precisare un double
+    /**
+     * Arrotonda un numero a due cifre decimali.
+     *
+     * @param num Il numero da arrotondare.
+     * @return Il numero arrotondato a due cifre decimali.
+     * @implNote Il metodo utilizza {@link Math#round(double)} per eseguire l'arrotondamento.
+     * @see Math#round(double)
+     */
     public double dueNumDecimali(double num)
     {
         return (double) Math.round(num * 100.0) / 100.0;
     }
 
-//    public void aggiornaMedie(String matricola)
-//    {
-//        Studente studente = studenteRepository.findByMatricola(matricola).orElseThrow(
-//                () -> new ResourceNotFoundException("Studente con matricola " + matricola + " non trovato"));
-//
-//        List<Esame> listaEsamiPositivi = esameRepository.findByStudenteAndVotoGreaterThanEqual(matricola, 18);
-//
-//        if(listaEsamiPositivi.isEmpty())
-//        {
-//
-//            if(studente.getCfuTotali() > 0) {
-//                studente.setMediaAritmetica(0.0);
-//                studente.setMediaPonderata(0.0);
-//                studente.setMediaDiConseguimento(0.0);
-//                studente.setCfuTotali(0);
-//            }
-//        }else
-//        {
-//            int sommaPesata = 0;
-//            int sommaCfu = 0;
-//            int sommaVoti = 0;
-//
-//            for(Esame esame : listaEsamiPositivi)
-//            {
-//                sommaPesata += esame.getVoto() * esame.getMateria().getCfu();
-//                sommaCfu += esame.getMateria().getCfu();
-//                sommaVoti += esame.getVoto();
-//            }
-//
-//            studente.setMediaAritmetica(dueNumDecimali((double)sommaVoti / listaEsamiPositivi.size()));
-//            studente.setMediaPonderata(dueNumDecimali((double) sommaPesata / sommaCfu));
-//            studente.setMediaDiConseguimento(dueNumDecimali(studente.getMediaPonderata() * 110/30));
-//            studente.setCfuTotali(sommaCfu);
-//
-//        }
-//
-//        studenteRepository.save(studente);
-//
-//    }
-
+    /**
+     * Rimuove tutti gli esami associati a uno studente e resetta le sue medie.
+     *
+     * @param matricola La matricola dello studente.
+     * @throws ResourceNotFoundException Se lo studente non esiste.
+     * @throws IllegalStateException Se lo studente non ha esami registrati.
+     * @implNote Dopo l'eliminazione degli esami, tutte le medie dello studente vengono azzerate.
+     * @see Studente
+     * @see Esame
+     */
     @Transactional
     public void rimuoviTuttiGliEsami(String matricola)
     {
@@ -93,6 +71,16 @@ public class EsameService {
         studenteRepository.save(studente);
     }
 
+
+    /**
+     * Aggiorna le medie e i CFU totali di uno studente in base ai suoi esami positivi.
+     *
+     * @param matricola La matricola dello studente.
+     * @throws ResourceNotFoundException Se lo studente non esiste.
+     * @implSpec La media aritmetica è calcolata sui voti ≥ 18, la ponderata usa i CFU.
+     * @see #dueNumDecimali(double)
+     * @see Studente
+     */
     public void aggiornaMedie(String matricola)
     {
         Studente studente = studenteRepository.findByMatricola(matricola).orElseThrow(
@@ -122,6 +110,21 @@ public class EsameService {
 
     }
 
+
+    /**
+     * Aggiunge un esame a uno studente o aggiorna un esame esistente.
+     *
+     * @param materiaEsame Il nome della materia.
+     * @param matricola La matricola dello studente.
+     * @param votoEsame Il voto ottenuto.
+     * @param dataEsame La data dell'esame.
+     * @return L'oggetto {@link Esame} appena aggiunto o aggiornato.
+     * @throws ResourceNotFoundException Se lo studente o la materia non esistono.
+     * @throws IllegalStateException Se lo studente e la materia non appartengono allo stesso dipartimento.
+     * @throws IllegalStateException Se l'esame è già stato superato o sostenuto nella stessa data.
+     * @implSpec Se il voto è inferiore a 18, il contatore delle bocciature aumenta.
+     * @see #aggiornaMedie(String)
+     */
     public Esame aggiungiEsame(String materiaEsame, String matricola, int votoEsame, LocalDate dataEsame) {
 
         Studente studente = studenteRepository.findByMatricola(matricola)

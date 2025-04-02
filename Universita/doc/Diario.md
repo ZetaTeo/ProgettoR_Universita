@@ -6,7 +6,7 @@
 
 1.2. E' necessario creare un metodo che ricalcoli il risultato qualora un esame venisse cancellato
 
-
+![img.png](img.png)
 
 2. Metodo che analizza l'andamento accademico di uno studente nel tempo, valutando il miglioramento 
    o peggioramento del voto medio e il numero di bocciature subite.
