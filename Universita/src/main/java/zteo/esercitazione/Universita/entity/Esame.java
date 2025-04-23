@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ public class Esame {
     @EmbeddedId
     private EsameId id;
 
-    @FutureOrPresent(message = "La data non può essere nel passato")
+    @PastOrPresent(message = "La data non può essere nel futuro")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false,insertable = false ,updatable = false) // Evita il conflitto nella mappatura
     private LocalDate data;

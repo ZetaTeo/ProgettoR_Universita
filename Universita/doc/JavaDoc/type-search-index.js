@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"zteo.esercitazione.Universita.service","l":"EsameService"},{"p":"zteo.esercitazione.Universita.service","l":"StudenteService"}];updateSearchResults();

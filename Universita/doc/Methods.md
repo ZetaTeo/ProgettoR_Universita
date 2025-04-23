@@ -1,7 +1,7 @@
 # Esame Service: aggiungi Esame
 
 
-Controlli:
+Controlli orElseThrow:
 - Lo studente matricola n. esiste?
 - La materia nome xyz esiste?
 - Verifico se all'interno della tabella "esame" esiste esso con matricola e materia valida riferita allo studente
