@@ -33,4 +33,10 @@ public class ExceptionManagement {
     {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
+
+    @ExceptionHandler({HandleInvalidEnumValue.class})
+    public ResponseEntity<String> handleInvalidEnumValue(HandleInvalidEnumValue e)
+    {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import zteo.esercitazione.Universita.entity.enumeration.CorsoDiLaurea;
 
 
 import java.util.ArrayList;
@@ -58,9 +59,13 @@ public class Studente {
     // ===================================== nuova aggiunta
 
 
+//    @Column(nullable = false)
+//    @NotBlank(message = "Il corso di laurea non può essere vuoto")
+//    private String corsoDiLaurea;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @NotBlank(message = "Il corso di laurea non può essere vuoto")
-    private String corsoDiLaurea;
+    private CorsoDiLaurea corsoDiLaurea;
 
     @ManyToOne
     @JoinColumn(nullable = false)

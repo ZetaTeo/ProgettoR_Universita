@@ -9,7 +9,9 @@ import zteo.esercitazione.Universita.dto.StatsStudenteDto;
 import zteo.esercitazione.Universita.dto.StudenteDto;
 import zteo.esercitazione.Universita.entity.Dipartimento;
 import zteo.esercitazione.Universita.entity.Studente;
+import zteo.esercitazione.Universita.entity.enumeration.CorsoDiLaurea;
 import zteo.esercitazione.Universita.exception.BadRequestException;
+import zteo.esercitazione.Universita.exception.HandleInvalidEnumValue;
 import zteo.esercitazione.Universita.exception.ResourceNotFoundException;
 import zteo.esercitazione.Universita.repository.DipartimentoRepository;
 import zteo.esercitazione.Universita.repository.StudenteRepository;
@@ -42,12 +44,14 @@ public class StudenteService {
         Dipartimento dipartimento = dipartimentoRepository.findByName(studenteDto.getDipartimento())
                 .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + studenteDto.getDipartimento() + " non trovato"));
 
+       CorsoDiLaurea corso = CorsoDiLaurea.fromNome(studenteDto.getCorsoDiLaurea());
+
         Studente studente = new Studente();
         studente.setNome(studenteDto.getNome());
         studente.setCognome(studenteDto.getCognome());
         studente.setEmail(studenteDto.getEmail());
         studente.setMatricola(studenteDto.getMatricola());
-        studente.setCorsoDiLaurea(studenteDto.getCorsoDiLaurea());
+        studente.setCorsoDiLaurea(corso);
         studente.setDipartimento(dipartimento);
 
         studenteRepository.save(studente);

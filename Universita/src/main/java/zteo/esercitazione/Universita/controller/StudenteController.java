@@ -30,7 +30,7 @@ public class StudenteController {
     @PostMapping("/addStudente")
     @Operation(summary = "Inserisce un nuovo studente",
                tags = "Operazioni - Studente")
-    public ResponseEntity<StudenteDto> createStudente(@RequestBody StudenteDto studenteDto)
+    public ResponseEntity<StudenteDto> createStudente(@RequestBody @Valid StudenteDto studenteDto)
     {
         //return ResponseEntity.ok(studenteService.createStudent(studenteDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(studenteService.createStudente(studenteDto));

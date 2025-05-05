@@ -1,9 +1,10 @@
 package zteo.esercitazione.Universita.dto;
 
 
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import zteo.esercitazione.Universita.entity.Studente;
-
+import zteo.esercitazione.Universita.entity.enumeration.CorsoDiLaurea;
 
 
 @Data
@@ -11,9 +12,10 @@ import zteo.esercitazione.Universita.entity.Studente;
 @AllArgsConstructor
 public class StudenteDto {
 
-
+    @Pattern(regexp = "^[A-Za-zÀ-ÿ'\\s]+$", message = "Il nome non può contenere numeri o caratteri speciali")
     private String nome;
 
+    @Pattern(regexp = "^[A-Za-zÀ-ÿ'\\s]+$", message = "Il cognome non può contenere numeri o caratteri speciali")
     private String cognome;
 
     private String email;
@@ -39,7 +41,7 @@ public class StudenteDto {
                   studente.getCognome(),
                   studente.getEmail(),
                   studente.getMatricola(),
-                  studente.getCorsoDiLaurea(),
+                  studente.getCorsoDiLaurea().name(),
                   studente.getCfuTotali(),
                   studente.getDipartimento().getNome(),
                   studente.getMediaAritmetica(),
