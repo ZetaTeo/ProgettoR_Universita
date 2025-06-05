@@ -3,6 +3,8 @@ package zteo.esercitazione.Universita.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import zteo.esercitazione.Universita.dto.StatsStudenteDto;
@@ -44,7 +46,8 @@ public class StudenteService {
         Dipartimento dipartimento = dipartimentoRepository.findByName(studenteDto.getDipartimento())
                 .orElseThrow(() -> new ResourceNotFoundException("Dipartimento " + studenteDto.getDipartimento() + " non trovato"));
 
-       CorsoDiLaurea corso = CorsoDiLaurea.fromNome(studenteDto.getCorsoDiLaurea());
+       //CorsoDiLaurea corso = CorsoDiLaurea.fromNome(studenteDto.getCorsoDiLaurea());
+        CorsoDiLaurea corso = CorsoDiLaurea.valueOf(studenteDto.getCorsoDiLaurea());
 
         Studente studente = new Studente();
         studente.setNome(studenteDto.getNome());
@@ -143,4 +146,12 @@ public class StudenteService {
         }
         return stats;
     }
+
+   public Page<StudenteDto> getStudentiDipMedia(String dipartimento, double media , Pageable pageable)
+   {
+       return studenteRepository.findByDipMedia(dipartimento, media, pageable)
+               .map(StudenteDto::fromEntityToDto);
+   }
+
+
 }
